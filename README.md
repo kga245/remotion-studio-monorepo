@@ -71,7 +71,7 @@ This monorepo uses **pnpm Catalog** to centrally manage versions of React, Remot
    catalog:
      react: ^18.3.1
      react-dom: ^18.3.1
-     remotion: 4.0.406
+     remotion: 4.0.x
      typescript: ^5.6.3
      # ... all @remotion/* packages
    ```
@@ -116,16 +116,18 @@ remotion-studio-monorepo/
 
 ## Documentation
 
-| Guide                                        | Description                    |
-| -------------------------------------------- | ------------------------------ |
-| [Structure](./docs/structure.md)             | Monorepo architecture          |
-| [Adding Dependencies](./docs/adding-deps.md) | How to add packages            |
-| [Assets Guide](./docs/assets.md)             | Managing assets                |
-| [3D Notes](./docs/3d-notes.md)               | Three.js / R3F setup           |
-| [MCP Setup](./docs/mcp-setup.md)             | Claude / Codex integration     |
-| [Upgrading](./docs/upgrading-remotion.md)    | Remotion version management    |
-| [Packages](./docs/packages.md)               | Available packages & libraries |
-| [Troubleshooting](./docs/troubleshooting.md) | Common issues & solutions      |
+| Guide                                                     | Description                    |
+| --------------------------------------------------------- | ------------------------------ |
+| [Structure](./docs/structure.md)                          | Monorepo architecture          |
+| [Adding Dependencies](./docs/adding-deps.md)              | How to add packages            |
+| [Assets Guide](./docs/assets.md)                          | Managing assets                |
+| [3D Notes](./docs/3d-notes.md)                            | Three.js / R3F setup           |
+| [AI Skill Playbook](./docs/ai/remotion-skill-playbook.md) | Skill-first workflow           |
+| [Upgrading](./docs/upgrading-remotion.md)                 | Remotion version management    |
+| [Packages](./docs/packages.md)                            | Available packages & libraries |
+| [Troubleshooting](./docs/troubleshooting.md)              | Common issues & solutions      |
+
+> AI-assisted changes should follow the **Skill-first** workflow. Use MCP only when explicitly needed (`docs/mcp-setup.md`).
 
 ## Troubleshooting
 

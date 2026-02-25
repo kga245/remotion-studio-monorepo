@@ -24,9 +24,20 @@ This script:
 | `pnpm upgrade:remotion --tag canary`   | Resolve a dist-tag (e.g., `beta`, `canary`).             |
 | `pnpm upgrade:remotion --skip-install` | Skip the final `pnpm install` (lockfile update).         |
 
+## Skill-first checklist
+
+When upgrading, apply `$remotion-best-practices` and confirm:
+
+- Composition IDs match build scripts
+- Asset references consistently use `staticFile()`
+- duration / fps / width / height are aligned
+- Transition overlap is accounted for in `durationInFrames`
+
 ## After upgrading
 
 - Commit `package.json` changes + `pnpm-lock.yaml`.
+- Verify version alignment with `pnpm remotion versions`.
+- Run `pnpm lint` / `pnpm typecheck` / `pnpm test`.
 - Re-run `pnpm create:project` when building new apps — the scaffolder now syncs Remotion versions from the repo root automatically, so every fresh app matches the upgraded toolchain.
 
 If you maintain downstream repositories that were scaffolded from this template, re-run the same script there to stay up to date.
