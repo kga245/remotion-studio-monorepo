@@ -22,7 +22,7 @@ export default defineConfig({
       "packages/**/*.{test,spec}.{ts,tsx}",
       "apps/**/*.{test,spec}.{ts,tsx}",
     ],
-    exclude: ["node_modules", "dist", ".next", "out"],
+    exclude: ["node_modules", "**/node_modules/**", "dist", ".next", "out"],
   },
   resolve: {
     alias: {
