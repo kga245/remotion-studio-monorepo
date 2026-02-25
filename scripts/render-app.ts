@@ -14,6 +14,7 @@ interface RenderOptions {
   output?: string;
   concurrency?: number;
   quality?: number;
+  skipBuildPackages?: boolean;
 }
 
 const COLORS = {
@@ -33,35 +34,77 @@ function getAvailableApps(): string[] {
   const appsDir = join(process.cwd(), "apps");
   if (!existsSync(appsDir)) return [];
 
-  return readdirSync(appsDir).filter((name) => {
-    const fullPath = join(appsDir, name);
-    return (
-      statSync(fullPath).isDirectory() &&
-      !name.startsWith("_") &&
-      !name.includes("template") &&
-      existsSync(join(fullPath, "package.json"))
-    );
-  });
+  const collected: string[] = [];
+  const walk = (dir: string, relDir: string) => {
+    for (const entry of readdirSync(dir)) {
+      if (entry.startsWith(".")) continue;
+      const fullPath = join(dir, entry);
+      if (!statSync(fullPath).isDirectory()) continue;
+      if (entry === "node_modules") continue;
+
+      const relPath = relDir ? `${relDir}/${entry}` : entry;
+      const hasPackageJson = existsSync(join(fullPath, "package.json"));
+      if (hasPackageJson) {
+        if (
+          !entry.startsWith("_") &&
+          !entry.toLowerCase().includes("template") &&
+          !relPath.toLowerCase().includes("/_")
+        ) {
+          collected.push(relPath);
+        }
+        continue;
+      }
+
+      walk(fullPath, relPath);
+    }
+  };
+
+  walk(appsDir, "");
+  return collected.sort();
 }
 
-function getCompositions(appName: string): string[] {
-  const appPath = join(process.cwd(), "apps", appName);
+function resolveEntryPoint(appPath: string): string | null {
+  const candidates = [
+    "src/index.ts",
+    "src/index.tsx",
+    "src/main.ts",
+    "src/main.tsx",
+    "index.ts",
+    "index.tsx",
+  ];
 
+  for (const candidate of candidates) {
+    if (existsSync(join(appPath, candidate))) {
+      return candidate;
+    }
+  }
+
+  return null;
+}
+
+function getCompositions(appPath: string, entryPoint: string): string[] {
   try {
     // Try to get compositions using remotion compositions command
-    const output = execSync("pnpm remotion compositions --quiet", {
-      cwd: appPath,
-      encoding: "utf-8",
-    });
+    const output = execSync(
+      `pnpm exec remotion compositions ${JSON.stringify(entryPoint)} --quiet`,
+      {
+        cwd: appPath,
+        encoding: "utf-8",
+      },
+    );
 
     // Parse composition IDs from output
-    const compositions = output
-      .split("\n")
-      .filter((line) => line.trim())
-      .map((line) => line.split(/\s+/)[0])
+    const lines = output
+      .split(/\r?\n/)
+      .map((line) => line.trim())
       .filter(Boolean);
+    const candidate = lines.at(-1) ?? "";
+    const compositions = candidate
+      .split(/\s+/)
+      .map((token) => token.trim())
+      .filter((token) => /^[A-Za-z0-9_-]+$/.test(token));
 
-    return compositions;
+    return [...new Set(compositions)];
   } catch {
     log("Could not auto-detect compositions", "yellow");
     return [];
@@ -146,12 +189,30 @@ async function renderApp(options: RenderOptions) {
   }
 
   const appPath = join(process.cwd(), "apps", appName);
+  const entryPoint = resolveEntryPoint(appPath);
+  if (!entryPoint) {
+    log(`Could not find Remotion entry point in ${appName}`, "red");
+    process.exit(1);
+  }
+
+  if (!options.skipBuildPackages) {
+    log("\n🏗️ Building shared packages...", "blue");
+    try {
+      execSync("pnpm build:packages", {
+        cwd: process.cwd(),
+        stdio: "inherit",
+      });
+    } catch {
+      log("Failed to build shared packages", "red");
+      process.exit(1);
+    }
+  }
 
   // Select composition
   let compositionId = options.composition;
   if (!compositionId) {
     log(`\n🔍 Detecting compositions in ${appName}...`, "blue");
-    const compositions = getCompositions(appName);
+    const compositions = getCompositions(appPath, entryPoint);
     compositionId = await selectComposition(compositions);
   }
 
@@ -161,7 +222,13 @@ async function renderApp(options: RenderOptions) {
     join(appPath, "out", `${compositionId}-${Date.now()}.mp4`);
 
   // Build render command
-  const renderArgs = ["remotion", "render", compositionId, outputPath];
+  const renderArgs = [
+    "remotion",
+    "render",
+    entryPoint,
+    compositionId,
+    outputPath,
+  ];
 
   if (options.concurrency) {
     renderArgs.push("--concurrency", options.concurrency.toString());
@@ -173,6 +240,7 @@ async function renderApp(options: RenderOptions) {
 
   log("\n🎬 Starting render...", "blue");
   log(`  App: ${appName}`, "cyan");
+  log(`  Entry: ${entryPoint}`, "cyan");
   log(`  Composition: ${compositionId}`, "cyan");
   log(`  Output: ${outputPath}`, "cyan");
 
@@ -202,6 +270,7 @@ if (args.includes("--help") || args.includes("-h")) {
   log("  --output <path>        Output file path", "yellow");
   log("  --concurrency <num>    Number of threads to use", "yellow");
   log("  --quality <num>        Video quality (0-100)", "yellow");
+  log("  --skip-build-packages  Skip package build before rendering", "yellow");
   log("  -h, --help             Show this help message", "yellow");
   log("\nExamples:", "cyan");
   log("  pnpm render", "yellow");
@@ -225,6 +294,7 @@ const options: RenderOptions = {
   quality: args.includes("--quality")
     ? parseInt(args[args.indexOf("--quality") + 1], 10)
     : undefined,
+  skipBuildPackages: args.includes("--skip-build-packages"),
 };
 
 renderApp(options).catch((error) => {
