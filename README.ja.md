@@ -71,7 +71,7 @@ node -v && pnpm -v && ffmpeg -version
    catalog:
      react: ^18.3.1
      react-dom: ^18.3.1
-     remotion: 4.0.406
+     remotion: 4.0.x
      typescript: ^5.6.3
      # ... すべての @remotion/* パッケージ
    ```
@@ -116,16 +116,18 @@ remotion-studio-monorepo/
 
 ## ドキュメント
 
-| ガイド                                          | 説明                        |
-| ----------------------------------------------- | --------------------------- |
-| [Structure](./docs/structure.ja.md)             | モノレポ構成                |
-| [Adding Dependencies](./docs/adding-deps.ja.md) | パッケージ追加方法          |
-| [Assets Guide](./docs/assets.ja.md)             | アセット管理                |
-| [3D Notes](./docs/3d-notes.ja.md)               | Three.js / R3F セットアップ |
-| [MCP Setup](./docs/mcp-setup.ja.md)             | Claude / Codex 連携         |
-| [Upgrading](./docs/upgrading-remotion.ja.md)    | Remotion バージョン管理     |
-| [Packages](./docs/packages.ja.md)               | 利用可能なパッケージ一覧    |
-| [Troubleshooting](./docs/troubleshooting.ja.md) | よくある問題と解決方法      |
+| ガイド                                                       | 説明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| [Structure](./docs/structure.ja.md)                          | モノレポ構成                |
+| [Adding Dependencies](./docs/adding-deps.ja.md)              | パッケージ追加方法          |
+| [Assets Guide](./docs/assets.ja.md)                          | アセット管理                |
+| [3D Notes](./docs/3d-notes.ja.md)                            | Three.js / R3F セットアップ |
+| [AI Skill Playbook](./docs/ai/remotion-skill-playbook.ja.md) | Skill-First 運用ルール      |
+| [Upgrading](./docs/upgrading-remotion.ja.md)                 | Remotion バージョン管理     |
+| [Packages](./docs/packages.ja.md)                            | 利用可能なパッケージ一覧    |
+| [Troubleshooting](./docs/troubleshooting.ja.md)              | よくある問題と解決方法      |
+
+> AI作業は **Skill-First** を標準とします。MCPは必要時のみ任意で利用してください（`docs/mcp-setup.ja.md`）。
 
 ## トラブルシューティング
 

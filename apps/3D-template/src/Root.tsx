@@ -41,7 +41,7 @@ export const Root: React.FC = () => {
   return (
     <>
       <Composition
-        id="y"
+        id="Main"
         component={TemplateMain}
         width={WIDTH}
         height={HEIGHT}
