@@ -180,14 +180,15 @@ export class LinkedParticlesSceneManager {
       throw new Error("WebGL2 context creation failed");
     }
 
-    this.renderer = new WebGLRenderer({
+    const rendererOptions: ConstructorParameters<typeof WebGLRenderer>[0] = {
       canvas,
       context: gl2 as unknown as WebGLRenderingContext,
       alpha: true,
       antialias: true,
       preserveDrawingBuffer: true,
       powerPreference: "high-performance",
-    } as any);
+    };
+    this.renderer = new WebGLRenderer(rendererOptions);
 
     this.renderer.setPixelRatio(1);
     this.renderer.setSize(width, height, false);
