@@ -379,6 +379,43 @@ importers:
         specifier: "catalog:"
         version: 4.0.429(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
+  apps/examples/animations-showcase:
+    dependencies:
+      "@studio/core-types":
+        specifier: workspace:*
+        version: link:../../../packages/@studio/core-types
+      "@studio/easings":
+        specifier: workspace:*
+        version: link:../../../packages/@studio/easings
+      "@studio/hooks":
+        specifier: workspace:*
+        version: link:../../../packages/@studio/hooks
+      "@studio/timing":
+        specifier: workspace:*
+        version: link:../../../packages/@studio/timing
+      "@studio/transitions":
+        specifier: workspace:*
+        version: link:../../../packages/@studio/transitions
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+      remotion:
+        specifier: "catalog:"
+        version: 4.0.429(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      "@remotion/cli":
+        specifier: "catalog:"
+        version: 4.0.429(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@types/react":
+        specifier: ^18.3.0
+        version: 18.3.26
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.2
+
   packages/@studio/core-types:
     dependencies:
       remotion:
@@ -12352,7 +12389,7 @@ snapshots:
 
   "@babel/code-frame@7.27.1":
     dependencies:
-      "@babel/helper-validator-identifier": 7.27.1
+      "@babel/helper-validator-identifier": 7.28.5
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
@@ -12407,7 +12444,7 @@ snapshots:
     dependencies:
       "@babel/core": 7.28.5
       "@babel/helper-module-imports": 7.27.1
-      "@babel/helper-validator-identifier": 7.27.1
+      "@babel/helper-validator-identifier": 7.28.5
       "@babel/traverse": 7.28.5
     transitivePeerDependencies:
       - supports-color
@@ -12427,7 +12464,7 @@ snapshots:
 
   "@babel/parser@7.24.1":
     dependencies:
-      "@babel/types": 7.28.4
+      "@babel/types": 7.28.5
 
   "@babel/parser@7.28.5":
     dependencies:
@@ -15042,7 +15079,7 @@ snapshots:
 
   "@types/babel__core@7.20.5":
     dependencies:
-      "@babel/parser": 7.24.1
+      "@babel/parser": 7.28.5
       "@babel/types": 7.28.4
       "@types/babel__generator": 7.27.0
       "@types/babel__template": 7.4.4
@@ -15050,12 +15087,12 @@ snapshots:
 
   "@types/babel__generator@7.27.0":
     dependencies:
-      "@babel/types": 7.28.4
+      "@babel/types": 7.28.5
 
   "@types/babel__template@7.4.4":
     dependencies:
-      "@babel/parser": 7.24.1
-      "@babel/types": 7.28.4
+      "@babel/parser": 7.28.5
+      "@babel/types": 7.28.5
 
   "@types/babel__traverse@7.28.0":
     dependencies:

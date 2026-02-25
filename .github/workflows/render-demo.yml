@@ -76,10 +76,7 @@ jobs:
         run: pnpm remotion browser ensure
 
       - name: Build packages
-        run: |
-          pnpm -F @studio/timing build
-          pnpm -F @studio/hooks build
-          pnpm -F @studio/core-types build
+        run: pnpm build:packages
 
       - name: Render videos
         id: render
