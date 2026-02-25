@@ -52,7 +52,7 @@ node -v && pnpm -v && ffmpeg -version
 - **Monorepo** powered by pnpm workspaces
 - **Centralized dependency management** via **pnpm Catalog**
 - **Templates** for 2D & 3D projects (`apps/_template`, `apps/3D-template`)
-- **Productivity scripts** (batch rendering, asset sync, template replacement)
+- **Productivity scripts** (project scaffolding, render helper, upgrade automation)
 - **Offline reference** (`docs/remotion-reference.md`)
 - **Timeline utilities** (`@studio/timing`), **Anime.js bridge**, transitions, R3F, Pixi/Konva, WebGL effects
 - Optional **CI/CD workflows**

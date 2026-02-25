@@ -10,6 +10,10 @@ The default skill is `$remotion-best-practices`.
 - Use this repository's implementation/docs as the primary source of truth.
 - MCP is optional. The default workflow should work without it.
 
+## Skill updates
+
+- To update Remotion skills: `pnpm skills:remotion:update`
+
 ## Standard flow
 
 1. Declare the applied skill at task start.  

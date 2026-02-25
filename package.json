@@ -35,6 +35,8 @@
     "prepare": "husky",
     "upgrade:remotion": "tsx scripts/upgrade-remotion.ts",
     "upgrade:remotion:dry": "tsx scripts/upgrade-remotion.ts --dry-run",
+    "smoke:create-project": "tsx scripts/smoke-create-project.ts",
+    "skills:remotion:update": "pnpm remotion skills update",
     "preview": "echo 'Use: pnpm -C apps/<name> run preview'",
     "build:app": "echo 'Use: pnpm -C apps/<name> run build'"
   },

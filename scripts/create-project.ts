@@ -52,8 +52,18 @@ function parseArgs(argv: string[]) {
   let nameArg: string | undefined;
   let templateKey: TemplateKey | undefined;
   let destArg: string | undefined;
+  let yes = false;
+  let noInstall = false;
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
+    if (a === "--yes" || a === "-y") {
+      yes = true;
+      continue;
+    }
+    if (a === "--no-install") {
+      noInstall = true;
+      continue;
+    }
     if (a === "--template" || a === "-t") {
       const v = argv[i + 1];
       if (v) {
@@ -76,7 +86,7 @@ function parseArgs(argv: string[]) {
       continue;
     }
   }
-  return { nameArg, templateKey, destArg };
+  return { nameArg, templateKey, destArg, yes, noInstall };
 }
 
 async function ensureExists(p: string) {
@@ -183,35 +193,48 @@ async function main() {
     nameArg,
     templateKey: cliTemplate,
     destArg,
+    yes,
+    noInstall,
   } = parseArgs(process.argv.slice(2));
+  const useDefaults = yes;
   const defaultName = nameArg || "new-app";
   const nameAns = nameArg
     ? nameArg
-    : (await question(`Project name (@studio/<name>) [${defaultName}]: `)) ||
-      defaultName;
+    : useDefaults
+      ? defaultName
+      : (await question(`Project name (@studio/<name>) [${defaultName}]: `)) ||
+        defaultName;
   const normName = nameAns.trim();
   if (!/^[a-z0-9-_]+$/i.test(normName)) {
     console.error("Invalid name. Use letters, numbers, dash, underscore.");
     process.exit(1);
   }
-  const width = Number((await question("Width [1920]: ")) || "1920");
-  const height = Number((await question("Height [1080]: ")) || "1080");
-  const fps = Number((await question("FPS [30]: ")) || "30");
-  const duration = Number(
-    (await question("Duration in frames [180]: ")) || "180",
-  );
-  const compIdInput = (await question("Composition ID [Main]: ")).trim();
+  const width = useDefaults
+    ? 1920
+    : Number((await question("Width [1920]: ")) || "1920");
+  const height = useDefaults
+    ? 1080
+    : Number((await question("Height [1080]: ")) || "1080");
+  const fps = useDefaults ? 30 : Number((await question("FPS [30]: ")) || "30");
+  const duration = useDefaults
+    ? 180
+    : Number((await question("Duration in frames [180]: ")) || "180");
+  const compIdInput = useDefaults
+    ? ""
+    : (await question("Composition ID [Main]: ")).trim();
   const compositionId = compIdInput === "" ? "Main" : compIdInput;
   let templateKey: TemplateKey = cliTemplate ?? "default";
-  if (!cliTemplate) {
+  if (!cliTemplate && !useDefaults) {
     const use3d = (await question("Use 3D template? [y/N]: "))
       .trim()
       .toLowerCase();
     templateKey = use3d === "y" || use3d === "yes" ? "3d" : "default";
   }
-  const installAns = (await question("Run pnpm install now? [Y/n]: "))
-    .trim()
-    .toLowerCase();
+  const installAns = noInstall
+    ? "n"
+    : useDefaults
+      ? "y"
+      : (await question("Run pnpm install now? [Y/n]: ")).trim().toLowerCase();
   const answers: Answers = {
     name: normName,
     width: Number.isFinite(width) ? width : 1920,
@@ -240,7 +263,7 @@ async function main() {
   const pkg = JSON.parse(await fsp.readFile(pkgPath, "utf8"));
   pkg.name = `@studio/${answers.name}`;
   if (pkg.scripts?.build) {
-    pkg.scripts.build = `remotion render ${answers.compositionId} out/${answers.name}.mp4`;
+    pkg.scripts.build = `remotion render src/index.ts ${answers.compositionId} out/${answers.name}.mp4`;
   }
   alignRemotionDeps(pkg);
   await fsp.writeFile(pkgPath, JSON.stringify(pkg, null, 2) + "\n");

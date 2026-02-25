@@ -52,7 +52,7 @@ node -v && pnpm -v && ffmpeg -version
 - **pnpm workspaces** によるモノレポ運用
 - **pnpm Catalog による依存関係の一元管理**
 - **2D・3D テンプレート** 搭載（`apps/_template`、`apps/3D-template`）
-- **生産性スクリプト** (一括レンダリング、アセット同期、テンプレート置換)
+- **生産性スクリプト** (プロジェクト作成、レンダー補助、アップグレード自動化)
 - **オフライン参照** (`docs/remotion-reference.md`)
 - **タイムライン/アニメ/2D/3D/WebGL のユーティリティ群**
 - オプションで **CI/CD ワークフロー**

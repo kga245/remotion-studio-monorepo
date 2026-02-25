@@ -6,7 +6,7 @@
     "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "paths": {
-      "@studio/*": ["../../packages/*/src", "../../packages/@*/*/src"]
+      "@studio/*": ["../../packages/*/src"]
     }
   },
   "include": ["src", "remotion.config.ts"]
