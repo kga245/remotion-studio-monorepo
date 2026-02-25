@@ -130,8 +130,9 @@ jobs:
           script: |
             const current = '${{ steps.check-updates.outputs.current }}';
             const latest = '${{ steps.check-updates.outputs.latest }}';
+            const targetTitle = `Update Remotion to ${latest}`;
 
-            // Check if issue already exists
+            // Find open Remotion dependency issues
             const issues = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -139,20 +140,54 @@ jobs:
               labels: 'dependencies,remotion'
             });
 
-            const existingIssue = issues.data.find(issue =>
-              issue.title.includes('Update Remotion')
+            const remotionIssues = issues.data.filter((issue) =>
+              issue.title.startsWith('Update Remotion to ')
             );
 
-            if (existingIssue) {
-              console.log('Issue already exists:', existingIssue.html_url);
+            const exactMatch = remotionIssues.find(
+              (issue) => issue.title === targetTitle
+            );
+
+            if (exactMatch) {
+              console.log('Issue for latest version already exists:', exactMatch.html_url);
               return;
             }
 
-            // Create new issue
+            // Close stale automated issues before creating a new one.
+            for (const issue of remotionIssues) {
+              const labels = Array.isArray(issue.labels) ? issue.labels : [];
+              const automated = labels.some((label) => {
+                if (typeof label === 'string') return label === 'automated';
+                return label?.name === 'automated';
+              });
+
+              if (!automated) {
+                console.log(`Skipping non-automated issue #${issue.number}: ${issue.title}`);
+                continue;
+              }
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Closing as stale: a newer Remotion update target is available (${latest}).`
+              });
+
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+
+              console.log(`Closed stale issue #${issue.number}: ${issue.title}`);
+            }
+
+            // Create a fresh issue for the latest version
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Update Remotion to ${latest}`,
+              title: targetTitle,
               body: `## 📦 Remotion Update Available\n\n` +
                     `A new version of Remotion is available.\n\n` +
                     `- **Current version:** ${current}\n` +
