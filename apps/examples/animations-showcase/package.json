@@ -15,13 +15,14 @@
     "@studio/core-types": "workspace:*",
     "@studio/easings": "workspace:*",
     "@studio/transitions": "workspace:*",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "remotion": "catalog:"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "remotion": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@remotion/cli": "catalog:",
-    "@types/react": "^18.3.0",
-    "typescript": "^5.6.3"
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
   }
 }

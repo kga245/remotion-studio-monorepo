@@ -48,6 +48,84 @@ if (!remotionVersion) {
 
 type TemplateKey = "default" | "3d";
 
+type AppMeta = {
+  title: string;
+  description: string;
+  tags: string[];
+  thumbnail: string;
+  lastRendered: string | null;
+  category: string;
+};
+
+function toDisplayTitle(name: string) {
+  return name
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function inferCategory(name: string, templateKey: TemplateKey) {
+  const lower = name.toLowerCase();
+  if (templateKey === "3d") return "3d";
+  if (/(example|demo|showcase)/.test(lower)) return "example";
+  if (/(template|starter|boilerplate)/.test(lower)) return "template";
+  return "general";
+}
+
+function inferTags(name: string, templateKey: TemplateKey, category: string) {
+  const tags = new Set<string>(["remotion", category]);
+  tags.add(templateKey === "3d" ? "3d" : "2d");
+  if (templateKey === "3d") tags.add("template");
+
+  const nameTags = name
+    .split(/[^a-z0-9]+/i)
+    .map((tag) => tag.trim().toLowerCase())
+    .filter((tag) => tag.length >= 2);
+  for (const tag of nameTags) {
+    tags.add(tag);
+  }
+
+  return Array.from(tags);
+}
+
+function buildAppMeta(name: string, templateKey: TemplateKey): AppMeta {
+  const category = inferCategory(name, templateKey);
+  const templateLabel =
+    templateKey === "3d" ? "3D template" : "default template";
+  return {
+    title: toDisplayTitle(name),
+    description: `${toDisplayTitle(name)} generated from ${templateLabel}.`,
+    tags: inferTags(name, templateKey, category),
+    thumbnail: "public/thumbnail.svg",
+    lastRendered: null,
+    category,
+  };
+}
+
+function buildDefaultThumbnailSvg(
+  name: string,
+  templateKey: TemplateKey,
+): string {
+  const title = toDisplayTitle(name).slice(0, 28);
+  const category = templateKey === "3d" ? "3D" : "2D";
+  const bgA = templateKey === "3d" ? "#1d4ed8" : "#0f766e";
+  const bgB = templateKey === "3d" ? "#7c3aed" : "#2563eb";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="${title}">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="${bgA}" />
+      <stop offset="100%" stop-color="${bgB}" />
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)" />
+  <circle cx="1070" cy="120" r="220" fill="rgba(255,255,255,0.08)" />
+  <circle cx="180" cy="620" r="260" fill="rgba(255,255,255,0.08)" />
+  <text x="80" y="520" fill="#f8fafc" font-size="72" font-family="Inter, system-ui, sans-serif" font-weight="700">${title}</text>
+  <text x="84" y="586" fill="rgba(248,250,252,0.92)" font-size="34" font-family="Inter, system-ui, sans-serif">Remotion Forge ${category}</text>
+</svg>`;
+}
+
 function parseArgs(argv: string[]) {
   let nameArg: string | undefined;
   let templateKey: TemplateKey | undefined;
@@ -323,6 +401,14 @@ async function main() {
 
   // Ensure public directory
   await ensureExists(path.join(destDir, "public"));
+  const thumbnailPath = path.join(destDir, "public", "thumbnail.svg");
+  if (!fs.existsSync(thumbnailPath)) {
+    await fsp.writeFile(
+      thumbnailPath,
+      `${buildDefaultThumbnailSvg(answers.name, templateKey)}\n`,
+      "utf8",
+    );
+  }
   // Scaffold public/assets with commonly used subfolders
   // images, audio, video, fonts, css, data(json), lottie(json)
   const assetsBase = path.join(destDir, "public", "assets");
@@ -358,6 +444,15 @@ async function main() {
   // Rename files/directories that might contain a concrete name from past templates
   await renameIfNeeded(destDir, "toki-mv", answers.name);
   await renameIfNeeded(destDir, "__APP_NAME__", answers.name);
+
+  // Ensure app meta always exists with required keys.
+  const appMetaPath = path.join(destDir, "app.meta.json");
+  const appMeta = buildAppMeta(answers.name, templateKey);
+  await fsp.writeFile(
+    appMetaPath,
+    JSON.stringify(appMeta, null, 2) + "\n",
+    "utf8",
+  );
 
   console.log("Project created successfully.");
 
