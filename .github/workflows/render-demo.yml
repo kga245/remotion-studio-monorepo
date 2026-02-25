@@ -166,10 +166,15 @@ jobs:
               continue
             fi
 
-            # Get compositions
-            compositions=$(pnpm exec remotion compositions "$entry" --quiet 2>/dev/null || echo "")
+            # Get compositions (parse Remotion table output to avoid mixing progress logs)
+            composition_output=$(pnpm exec remotion compositions "$entry" 2>/dev/null || true)
+            mapfile -t compositions < <(
+              printf '%s\n' "$composition_output" \
+                | sed -E 's/\x1B\[[0-9;]*[A-Za-z]//g' \
+                | awk -F'[[:space:]][[:space:]]+' '$2 ~ /^[0-9]+$/ && $3 ~ /^[0-9]+x[0-9]+$/ && $4 ~ /^[0-9]+/ {print $1}'
+            )
 
-            if [ -z "$compositions" ]; then
+            if [ "${#compositions[@]}" -eq 0 ]; then
               echo "No compositions found for $app_name"
               failed=1
               cd "$GITHUB_WORKSPACE"
@@ -177,7 +182,7 @@ jobs:
             fi
 
             # Render each composition
-            for comp in $compositions; do
+            for comp in "${compositions[@]}"; do
               # If specific composition requested, skip others
               if [ -n "${{ inputs.composition }}" ] && [ "$comp" != "${{ inputs.composition }}" ]; then
                 continue
