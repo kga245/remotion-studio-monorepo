@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -86,9 +88,46 @@ jobs:
           mkdir -p rendered-videos
           failed=0
           rendered=0
+          selected_apps=0
 
           # Find apps to render (supports nested apps such as apps/examples/*)
           mapfile -t app_dirs < <(find apps -type f -name package.json -print | xargs -n1 dirname | sort -u)
+          declare -A changed_app_dirs=()
+          render_all=0
+
+          if [ -n "${{ inputs.app }}" ]; then
+            echo "Manual app filter enabled: ${{ inputs.app }}"
+          elif [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            diff_base=""
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              diff_base="${{ github.event.pull_request.base.sha }}"
+            elif [ "${{ github.event_name }}" = "push" ]; then
+              diff_base="${{ github.event.before }}"
+            fi
+
+            if [ -n "$diff_base" ]; then
+              mapfile -t changed_files < <(git diff --name-only "$diff_base" "$GITHUB_SHA" || true)
+              if [ "${#changed_files[@]}" -gt 0 ]; then
+                for file in "${changed_files[@]}"; do
+                  if [[ "$file" == packages/* ]] || [[ "$file" == scripts/* ]]; then
+                    render_all=1
+                    break
+                  fi
+                done
+              fi
+
+              if [ "$render_all" -eq 0 ]; then
+                for app in "${app_dirs[@]}"; do
+                  for file in "${changed_files[@]}"; do
+                    if [[ "$file" == "$app/"* ]]; then
+                      changed_app_dirs["$app"]=1
+                      break
+                    fi
+                  done
+                done
+              fi
+            fi
+          fi
 
           for app in "${app_dirs[@]}"; do
             app_name="${app#apps/}"
@@ -104,7 +143,14 @@ jobs:
               continue
             fi
 
+            if [ -z "${{ inputs.app }}" ] && [ "$render_all" -eq 0 ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+              if [ -z "${changed_app_dirs["$app"]+x}" ]; then
+                continue
+              fi
+            fi
+
             echo "Rendering $app_name..."
+            selected_apps=$((selected_apps + 1))
 
             # Resolve entrypoint
             cd "$app"
@@ -155,6 +201,17 @@ jobs:
 
             cd "$GITHUB_WORKSPACE"
           done
+
+          if [ "$render_all" -eq 0 ] && [ -z "${{ inputs.app }}" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            echo "Filtered to changed apps only."
+          else
+            echo "Rendering all candidate apps."
+          fi
+
+          if [ "$selected_apps" -eq 0 ]; then
+            echo "No eligible apps matched current filters. Skipping render."
+            exit 0
+          fi
 
           if [ "$rendered" -eq 0 ]; then
             echo "No videos were rendered."
