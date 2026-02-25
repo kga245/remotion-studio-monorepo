@@ -15,7 +15,8 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "remotion": "catalog:",
-    "three": "0.169.0"
+    "three": "0.169.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@remotion/cli": "catalog:"

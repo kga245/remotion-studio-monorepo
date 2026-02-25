@@ -6,7 +6,7 @@
   "type": "module",
   "packageManager": "pnpm@10.20.0",
   "engines": {
-    "node": ">=20"
+    "node": "22.17.0"
   },
   "workspaces": [
     "apps/*",
@@ -25,6 +25,9 @@
     "format:check": "prettier --check .",
     "clean": "turbo run clean && tsx scripts/clean.ts",
     "create:project": "tsx scripts/create-project.ts",
+    "forge": "tsx scripts/forge.ts",
+    "forge:launcher": "tsx scripts/forge-launcher.ts",
+    "forge:studio": "pnpm --filter @studio/studio run dev",
     "render": "tsx scripts/render-app.ts",
     "build:packages": "turbo run build --filter='./packages/**'",
     "build:apps": "turbo run build --filter='./apps/**'",

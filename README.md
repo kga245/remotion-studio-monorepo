@@ -16,6 +16,12 @@ cd remotion-studio-monorepo && pnpm install
 # Create new project
 pnpm create:project
 
+# Open Forge Studio dashboard (Web)
+pnpm forge studio
+
+# CLI fallback launcher (dev/render)
+pnpm forge launch
+
 # Start development
 cd apps/<name> && pnpm dev
 ```
@@ -26,9 +32,53 @@ cd apps/<name> && pnpm dev
 pnpm create:project -- -t 3d
 ```
 
+## Start Playing in 3 Minutes
+
+```bash
+# 1) Open the forge (Web dashboard)
+pnpm forge studio
+
+# 2) Create a new project
+pnpm create:project
+
+# 3) Launch from terminal with number selection
+pnpm forge launch
+```
+
+Inside `pnpm forge launch`, pick an app and run `dev` or `render`.  
+On successful `render`, a celebration page opens in your browser (Confetti + fireworks + achievement).
+
+## Forge Command Cheat Sheet
+
+| Command                                             | What it does                                                       |
+| --------------------------------------------------- | ------------------------------------------------------------------ |
+| `pnpm forge studio`                                 | Starts Next.js Studio dashboard (project cards)                    |
+| `pnpm forge launch`                                 | Starts CLI launcher (`dev/render` via number selection)            |
+| `pnpm forge render --app <name> --composition <id>` | Renders a specific app directly                                    |
+| `pnpm create:project`                               | Creates a new project (auto-generates `app.meta.json` + thumbnail) |
+| `pnpm create:project -- -t 3d`                      | Creates a new project from 3D template                             |
+
+## What You Can Manage in the UI
+
+- Project cards: See title, tags, category, and last render status at a glance.
+- `Dev起動` / `Dev停止`: Start or stop dev server per project card (shows `PID` and `Log` when running).
+- `Devを開く`: Instantly open the running dev URL for that project.
+- `Render`: Trigger rendering for the selected project right from the dashboard.
+- `Meta編集`: Update `app.meta.json` fields (`title / description / tags / category / thumbnail`) inline.
+
+The goal is simple: keep most daily project management inside the dashboard before dropping to terminal tools.
+
+## Recommended Loop
+
+1. Open `pnpm forge studio` and choose what to build.
+2. Run `pnpm create:project` to add a new work.
+3. Use `pnpm forge launch` with `dev` to iterate.
+4. Use `pnpm forge launch` with `render` to finish.
+5. Enjoy the celebration screen, then forge the next one.
+
 ## Prerequisites
 
-- **Node.js** 20+ (recommended: 22)
+- **Node.js** 22.17.0
 - **pnpm** 10+
 - **ffmpeg** (for rendering)
 
@@ -52,6 +102,7 @@ node -v && pnpm -v && ffmpeg -version
 - **Monorepo** powered by pnpm workspaces
 - **Centralized dependency management** via **pnpm Catalog**
 - **Templates** for 2D & 3D projects (`apps/_template`, `apps/3D-template`)
+- **Forge Studio dashboard** (`pnpm forge studio`) + CLI launcher fallback (`pnpm forge launch`)
 - **Productivity scripts** (project scaffolding, render helper, upgrade automation)
 - **Offline reference** (`docs/remotion-reference.md`)
 - **Timeline utilities** (`@studio/timing`), **Anime.js bridge**, transitions, R3F, Pixi/Konva, WebGL effects
@@ -107,6 +158,7 @@ This monorepo uses **pnpm Catalog** to centrally manage versions of React, Remot
 ```
 remotion-studio-monorepo/
 ├── apps/
+│   ├── studio/             # Forge Studio dashboard (Next.js)
 │   ├── _template/          # Base template
 │   └── 3D-template/        # Three.js template
 ├── packages/               # (Optional shared packages)
