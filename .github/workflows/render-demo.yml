@@ -6,6 +6,13 @@ on:
     paths:
       - "apps/**"
       - "packages/**"
+      - "scripts/**"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "apps/**"
+      - "packages/**"
+      - "scripts/**"
   workflow_dispatch:
     inputs:
       app:
@@ -16,6 +23,11 @@ on:
         description: "Composition ID (leave empty for all)"
         required: false
         type: string
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   render:
@@ -58,6 +70,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Ensure Remotion browser
+        run: pnpm remotion browser ensure
+
       - name: Build packages
         run: |
           pnpm -F @studio/timing build
@@ -67,54 +82,89 @@ jobs:
       - name: Render videos
         id: render
         run: |
+          set -euo pipefail
           mkdir -p rendered-videos
+          failed=0
+          rendered=0
 
-          # Find apps to render
-          for app in apps/*; do
-            if [ -d "$app" ] && [ -f "$app/package.json" ]; then
-              app_name=$(basename "$app")
+          # Find apps to render (supports nested apps such as apps/examples/*)
+          mapfile -t app_dirs < <(find apps -type f -name package.json -print | xargs -n1 dirname | sort -u)
 
-              # Skip templates
-              if [[ "$app_name" =~ ^_ ]] || [[ "$app_name" =~ template ]]; then
-                continue
-              fi
+          for app in "${app_dirs[@]}"; do
+            app_name="${app#apps/}"
+            app_base=$(basename "$app")
 
-              # If specific app requested, skip others
-              if [ -n "${{ inputs.app }}" ] && [ "$app_name" != "${{ inputs.app }}" ]; then
-                continue
-              fi
-
-              echo "Rendering $app_name..."
-
-              # Get compositions
-              cd "$app"
-              compositions=$(pnpm remotion compositions --quiet 2>/dev/null | awk '{print $1}' || echo "")
-
-              if [ -z "$compositions" ]; then
-                echo "No compositions found for $app_name"
-                cd ../..
-                continue
-              fi
-
-              # Render each composition
-              for comp in $compositions; do
-                # If specific composition requested, skip others
-                if [ -n "${{ inputs.composition }}" ] && [ "$comp" != "${{ inputs.composition }}" ]; then
-                  continue
-                fi
-
-                echo "Rendering composition: $comp"
-                output_file="../../rendered-videos/${app_name}-${comp}.mp4"
-
-                pnpm remotion render "$comp" "$output_file" \
-                  --concurrency 2 \
-                  --timeout 300000 \
-                  || echo "Failed to render $comp"
-              done
-
-              cd ../..
+            # Skip templates
+            if [[ "$app_base" =~ ^_ ]] || [[ "$app_name" =~ template ]]; then
+              continue
             fi
+
+            # If specific app requested, skip others
+            if [ -n "${{ inputs.app }}" ] && [ "$app_name" != "${{ inputs.app }}" ]; then
+              continue
+            fi
+
+            echo "Rendering $app_name..."
+
+            # Resolve entrypoint
+            cd "$app"
+            entry=""
+            for candidate in src/index.ts src/index.tsx src/main.ts src/main.tsx index.ts index.tsx; do
+              if [ -f "$candidate" ]; then
+                entry="$candidate"
+                break
+              fi
+            done
+
+            if [ -z "$entry" ]; then
+              echo "No entry point found for $app_name"
+              failed=1
+              cd "$GITHUB_WORKSPACE"
+              continue
+            fi
+
+            # Get compositions
+            compositions=$(pnpm exec remotion compositions "$entry" --quiet 2>/dev/null || echo "")
+
+            if [ -z "$compositions" ]; then
+              echo "No compositions found for $app_name"
+              failed=1
+              cd "$GITHUB_WORKSPACE"
+              continue
+            fi
+
+            # Render each composition
+            for comp in $compositions; do
+              # If specific composition requested, skip others
+              if [ -n "${{ inputs.composition }}" ] && [ "$comp" != "${{ inputs.composition }}" ]; then
+                continue
+              fi
+
+              echo "Rendering composition: $comp"
+              output_file="$GITHUB_WORKSPACE/rendered-videos/${app_name//\//-}-${comp}.mp4"
+
+              if pnpm exec remotion render "$entry" "$comp" "$output_file" \
+                --concurrency 2 \
+                --timeout 300000; then
+                rendered=$((rendered + 1))
+              else
+                echo "Failed to render $app_name / $comp"
+                failed=1
+              fi
+            done
+
+            cd "$GITHUB_WORKSPACE"
           done
+
+          if [ "$rendered" -eq 0 ]; then
+            echo "No videos were rendered."
+            exit 1
+          fi
+
+          if [ "$failed" -ne 0 ]; then
+            echo "One or more renders failed."
+            exit 1
+          fi
 
       - name: Upload rendered videos
         uses: actions/upload-artifact@v4
