@@ -10,6 +10,7 @@
   },
   "workspaces": [
     "apps/*",
+    "apps/examples/*",
     "packages/*",
     "packages/@*/*"
   ],
@@ -25,8 +26,8 @@
     "clean": "turbo run clean && tsx scripts/clean.ts",
     "create:project": "tsx scripts/create-project.ts",
     "render": "tsx scripts/render-app.ts",
-    "build:packages": "turbo run build --filter='./packages/*'",
-    "build:apps": "turbo run build --filter='./apps/*'",
+    "build:packages": "turbo run build --filter='./packages/**'",
+    "build:apps": "turbo run build --filter='./apps/**'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "analyze": "tsx scripts/analyze-bundle.ts",
@@ -35,6 +36,8 @@
     "prepare": "husky",
     "upgrade:remotion": "tsx scripts/upgrade-remotion.ts",
     "upgrade:remotion:dry": "tsx scripts/upgrade-remotion.ts --dry-run",
+    "smoke:create-project": "tsx scripts/smoke-create-project.ts",
+    "skills:remotion:update": "pnpm remotion skills update",
     "preview": "echo 'Use: pnpm -C apps/<name> run preview'",
     "build:app": "echo 'Use: pnpm -C apps/<name> run build'"
   },

@@ -6,7 +6,8 @@
     "dev": "remotion studio",
     "build": "remotion build",
     "render": "remotion render",
-    "preview": "remotion preview"
+    "preview": "remotion preview",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" remotion.config.ts"
   },
   "dependencies": {
     "@studio/timing": "workspace:*",

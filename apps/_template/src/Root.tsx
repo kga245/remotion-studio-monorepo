@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Composition,
-  registerRoot,
   AbsoluteFill,
   useCurrentFrame,
   useVideoConfig,
@@ -52,6 +51,5 @@ const Root: React.FC = () => {
   );
 };
 
-registerRoot(Root);
-
 export { TemplateMain };
+export { Root };
