@@ -15,7 +15,7 @@ catalog:
   react-dom: ^18.3.1
 
   # Remotion Core
-  remotion: 4.0.406
+  remotion: 4.0.429
 
   # TypeScript & Node Types
   typescript: ^5.6.3
@@ -27,41 +27,41 @@ catalog:
   tsx: ^4.16.2
 
   # Remotion Official Packages
-  "@remotion/cli": 4.0.406
-  "@remotion/studio": 4.0.406
-  "@remotion/player": 4.0.406
-  "@remotion/renderer": 4.0.406
-  "@remotion/bundler": 4.0.406
-  "@remotion/eslint-plugin": 4.0.406
-  "@remotion/eslint-config": 4.0.406
-  "@remotion/lambda": 4.0.406
-  "@remotion/cloudrun": 4.0.406
-  "@remotion/three": 4.0.406
-  "@remotion/skia": 4.0.406
-  "@remotion/lottie": 4.0.406
-  "@remotion/gif": 4.0.406
-  "@remotion/rive": 4.0.406
-  "@remotion/shapes": 4.0.406
-  "@remotion/paths": 4.0.406
-  "@remotion/motion-blur": 4.0.406
-  "@remotion/transitions": 4.0.406
-  "@remotion/animation-utils": 4.0.406
-  "@remotion/animated-emoji": 4.0.406
-  "@remotion/layout-utils": 4.0.406
-  "@remotion/noise": 4.0.406
-  "@remotion/media": 4.0.406
-  "@remotion/media-utils": 4.0.406
-  "@remotion/media-parser": 4.0.406
-  "@remotion/webcodecs": 4.0.406
-  "@remotion/captions": 4.0.406
-  "@remotion/fonts": 4.0.406
-  "@remotion/google-fonts": 4.0.406
-  "@remotion/preload": 4.0.406
-  "@remotion/install-whisper-cpp": 4.0.406
-  "@remotion/whisper-web": 4.0.406
-  "@remotion/openai-whisper": 4.0.406
-  "@remotion/tailwind": 4.0.406
-  "@remotion/tailwind-v4": 4.0.406
-  "@remotion/enable-scss": 4.0.406
-  "@remotion/zod-types": 4.0.406
-  "@remotion/licensing": 4.0.406
+  "@remotion/cli": 4.0.429
+  "@remotion/studio": 4.0.429
+  "@remotion/player": 4.0.429
+  "@remotion/renderer": 4.0.429
+  "@remotion/bundler": 4.0.429
+  "@remotion/eslint-plugin": 4.0.429
+  "@remotion/eslint-config": 4.0.429
+  "@remotion/lambda": 4.0.429
+  "@remotion/cloudrun": 4.0.429
+  "@remotion/three": 4.0.429
+  "@remotion/skia": 4.0.429
+  "@remotion/lottie": 4.0.429
+  "@remotion/gif": 4.0.429
+  "@remotion/rive": 4.0.429
+  "@remotion/shapes": 4.0.429
+  "@remotion/paths": 4.0.429
+  "@remotion/motion-blur": 4.0.429
+  "@remotion/transitions": 4.0.429
+  "@remotion/animation-utils": 4.0.429
+  "@remotion/animated-emoji": 4.0.429
+  "@remotion/layout-utils": 4.0.429
+  "@remotion/noise": 4.0.429
+  "@remotion/media": 4.0.429
+  "@remotion/media-utils": 4.0.429
+  "@remotion/media-parser": 4.0.429
+  "@remotion/webcodecs": 4.0.429
+  "@remotion/captions": 4.0.429
+  "@remotion/fonts": 4.0.429
+  "@remotion/google-fonts": 4.0.429
+  "@remotion/preload": 4.0.429
+  "@remotion/install-whisper-cpp": 4.0.429
+  "@remotion/whisper-web": 4.0.429
+  "@remotion/openai-whisper": 4.0.429
+  "@remotion/tailwind": 4.0.429
+  "@remotion/tailwind-v4": 4.0.429
+  "@remotion/enable-scss": 4.0.429
+  "@remotion/zod-types": 4.0.429
+  "@remotion/licensing": 4.0.429
