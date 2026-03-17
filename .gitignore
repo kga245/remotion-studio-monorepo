@@ -54,6 +54,21 @@ next-env.d.ts
 # OS
 Thumbs.db
 
+# Media files (use git-lfs for large assets)
+*.mp4
+*.webm
+*.mp3
+*.wav
+*.mov
+*.avi
+*.mkv
+*.flac
+*.ogg
+
+# Allow sample media in templates
+!apps/_template/**/sample.*
+!apps/_template/**/*.mp4
+
 # Remotion
 remotion-studio@*
 bash
