@@ -7,6 +7,11 @@ import { Studio54Bouncer } from "./compositions/Studio54Bouncer";
 import { ThreeBouncers } from "./compositions/ThreeBouncers";
 import { CTRDrop59 } from "./compositions/CTRDrop59";
 import { ZeroClick } from "./compositions/ZeroClick";
+import { Growth35 } from "./compositions/Growth35";
+import { LowesCase } from "./compositions/LowesCase";
+import { TrainingVsAgentic } from "./compositions/TrainingVsAgentic";
+import { MultiChannel } from "./compositions/MultiChannel";
+import { PassageVsPage } from "./compositions/PassageVsPage";
 
 // Webinar: 22:32 = 1352s at 30fps
 // 45 segments, each ~30 seconds
@@ -124,6 +129,48 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="ZeroClick"
           component={ZeroClick}
+          durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+
+        {/* Batch 2 — Data & Frameworks */}
+        <Composition
+          id="Growth35"
+          component={Growth35}
+          durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="LowesCase"
+          component={LowesCase}
+          durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="TrainingVsAgentic"
+          component={TrainingVsAgentic}
+          durationInFrames={240}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MultiChannel"
+          component={MultiChannel}
+          durationInFrames={270}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PassageVsPage"
+          component={PassageVsPage}
           durationInFrames={210}
           fps={30}
           width={1920}
