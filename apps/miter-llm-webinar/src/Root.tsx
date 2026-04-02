@@ -12,6 +12,11 @@ import { LowesCase } from "./compositions/LowesCase";
 import { TrainingVsAgentic } from "./compositions/TrainingVsAgentic";
 import { MultiChannel } from "./compositions/MultiChannel";
 import { PassageVsPage } from "./compositions/PassageVsPage";
+import { QueryFanOuts } from "./compositions/QueryFanOuts";
+import { CosineSimilarity } from "./compositions/CosineSimilarity";
+import { ContentPerLLM } from "./compositions/ContentPerLLM";
+import { CapstoneAtomization } from "./compositions/CapstoneAtomization";
+import { MilgardAudit } from "./compositions/MilgardAudit";
 
 // Webinar: 22:32 = 1352s at 30fps
 // 45 segments, each ~30 seconds
@@ -172,6 +177,48 @@ export const RemotionRoot: React.FC = () => {
           id="PassageVsPage"
           component={PassageVsPage}
           durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+
+        {/* Batch 3 — Deep Mechanics */}
+        <Composition
+          id="QueryFanOuts"
+          component={QueryFanOuts}
+          durationInFrames={240}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="CosineSimilarity"
+          component={CosineSimilarity}
+          durationInFrames={270}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="ContentPerLLM"
+          component={ContentPerLLM}
+          durationInFrames={240}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="CapstoneAtomization"
+          component={CapstoneAtomization}
+          durationInFrames={240}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MilgardAudit"
+          component={MilgardAudit}
+          durationInFrames={270}
           fps={30}
           width={1920}
           height={1080}
