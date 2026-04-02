@@ -22,6 +22,16 @@ import { DarkFunnel } from "./compositions/DarkFunnel";
 import { KPIs } from "./compositions/KPIs";
 import { Tsunami } from "./compositions/Tsunami";
 import { TwoChoices } from "./compositions/TwoChoices";
+import { BezosQuote } from "./compositions/BezosQuote";
+import { LLMsAreRoom } from "./compositions/LLMsAreRoom";
+import { CantBribe } from "./compositions/CantBribe";
+import { AreSomebody } from "./compositions/AreSomebody";
+import { ExistentialThreat } from "./compositions/ExistentialThreat";
+import { FetchabilityTips } from "./compositions/FetchabilityTips";
+import { AuthorityTips } from "./compositions/AuthorityTips";
+import { ExtractabilityTips } from "./compositions/ExtractabilityTips";
+import { GoodMarketing } from "./compositions/GoodMarketing";
+import { TheSaysMITER } from "./compositions/TheSaysMITER";
 
 // Webinar: 22:32 = 1352s at 30fps
 // 45 segments, each ~30 seconds
@@ -265,6 +275,88 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="TwoChoices"
           component={TwoChoices}
+          durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+
+        {/* Batch 5 — Interstitials */}
+        <Composition
+          id="BezosQuote"
+          component={BezosQuote}
+          durationInFrames={240}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="LLMsAreRoom"
+          component={LLMsAreRoom}
+          durationInFrames={180}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="CantBribe"
+          component={CantBribe}
+          durationInFrames={180}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AreSomebody"
+          component={AreSomebody}
+          durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="ExistentialThreat"
+          component={ExistentialThreat}
+          durationInFrames={180}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="FetchabilityTips"
+          component={FetchabilityTips}
+          durationInFrames={270}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AuthorityTips"
+          component={AuthorityTips}
+          durationInFrames={300}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="ExtractabilityTips"
+          component={ExtractabilityTips}
+          durationInFrames={270}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="GoodMarketing"
+          component={GoodMarketing}
+          durationInFrames={180}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="TheSaysMITER"
+          component={TheSaysMITER}
           durationInFrames={210}
           fps={30}
           width={1920}
