@@ -17,6 +17,11 @@ import { CosineSimilarity } from "./compositions/CosineSimilarity";
 import { ContentPerLLM } from "./compositions/ContentPerLLM";
 import { CapstoneAtomization } from "./compositions/CapstoneAtomization";
 import { MilgardAudit } from "./compositions/MilgardAudit";
+import { PGTAudit } from "./compositions/PGTAudit";
+import { DarkFunnel } from "./compositions/DarkFunnel";
+import { KPIs } from "./compositions/KPIs";
+import { Tsunami } from "./compositions/Tsunami";
+import { TwoChoices } from "./compositions/TwoChoices";
 
 // Webinar: 22:32 = 1352s at 30fps
 // 45 segments, each ~30 seconds
@@ -219,6 +224,48 @@ export const RemotionRoot: React.FC = () => {
           id="MilgardAudit"
           component={MilgardAudit}
           durationInFrames={270}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+
+        {/* Batch 4 — Impact & Decision */}
+        <Composition
+          id="PGTAudit"
+          component={PGTAudit}
+          durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="DarkFunnel"
+          component={DarkFunnel}
+          durationInFrames={270}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="KPIs"
+          component={KPIs}
+          durationInFrames={180}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Tsunami"
+          component={Tsunami}
+          durationInFrames={240}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="TwoChoices"
+          component={TwoChoices}
+          durationInFrames={210}
           fps={30}
           width={1920}
           height={1080}
