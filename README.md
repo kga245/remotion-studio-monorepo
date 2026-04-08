@@ -58,11 +58,11 @@ On successful `render`, a celebration page opens in your browser (Confetti + fir
 
 ## What You Can Manage in the UI
 
-- Project cards: See title, tags, category, and last render status at a glance.
-- `Dev起動` / `Dev停止`: Start or stop dev server per project card (shows `PID` and `Log` when running).
-- `Devを開く`: Instantly open the running dev URL for that project.
-- `Render`: Trigger rendering for the selected project right from the dashboard.
-- `Meta編集`: Update `app.meta.json` fields (`title / description / tags / category / thumbnail`) inline.
+- Focused project cards: Each card now emphasizes one primary action such as watch latest, open dev, or create first render.
+- Control panel: Heavy actions move into a dedicated side panel for `Renders / Dev / Meta`, keeping the grid easier to scan.
+- Getting-started guide: A short dismissible guide explains how to watch renders, open the control panel, and start first renders.
+- Language toggle: Switch the Studio UI between Japanese and English from the header.
+- Labeled filters: Search, category, status, and sort controls now make it easier to find what matters quickly.
 
 The goal is simple: keep most daily project management inside the dashboard before dropping to terminal tools.
 
@@ -70,9 +70,10 @@ The goal is simple: keep most daily project management inside the dashboard befo
 
 1. Open `pnpm forge studio` and choose what to build.
 2. Run `pnpm create:project` to add a new work.
-3. Use `cd apps/<name> && pnpm dev` to iterate.
-4. Use `pnpm forge render --app <name> --composition <id>` to finish.
-5. Enjoy the celebration screen, then forge the next one.
+3. Use the primary action on each card for the next obvious step.
+4. Open the control panel when you need renders, dev controls, or metadata editing.
+5. Use `cd apps/<name> && pnpm dev` or `pnpm forge render --app <name> --composition <id>` when you want terminal-driven iteration.
+6. Enjoy the celebration screen, then forge the next one.
 
 ## Prerequisites
 

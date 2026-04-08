@@ -58,11 +58,11 @@ pnpm forge render --app <name> --composition <id>
 
 ## UIでできる作品管理
 
-- 作品カード一覧: タイトル・タグ・カテゴリ・最終レンダーを一目で確認
-- `Dev起動` / `Dev停止`: カード単位で開発サーバーを開始・停止（起動中は `PID` と `Log` を表示）
-- `Devを開く`: 起動済みサーバーの画面を即オープン
-- `Render`: その作品のレンダーを即開始
-- `Meta編集`: `app.meta.json` の `title / description / tags / category / thumbnail` をその場で更新
+- 主操作付きカード: 各カードは「作品を見る」「Devを開く」「初回Render」など次の一手を先に出します
+- 管理パネル: `Renders / Dev / Meta` の重い操作は右側パネルへ集約し、一覧を見やすく保ちます
+- はじめてガイド: 閉じられる短い案内で「見る / 管理パネル / 初回Render」をすぐ把握できます
+- 言語切替: ヘッダー右上から日本語 / English を切り替えられます
+- ラベル付きフィルタ: 検索、カテゴリ、状態、並び順で見たい作品に素早く寄れます
 
 「ターミナルに戻らないと何もできない」を減らし、まずUIで制作フローを回せる設計です。
 
@@ -70,9 +70,10 @@ pnpm forge render --app <name> --composition <id>
 
 1. `pnpm forge studio` でカードを眺めて今日作る作品を決める。
 2. `pnpm create:project` で1本追加する。
-3. `cd apps/<name> && pnpm dev` で調整する。
-4. `pnpm forge render --app <name> --composition <id>` で仕上げる。
-5. 祝賀演出を見て、次の1本を作る。
+3. 各カードの主操作で、次にやるべき作業へそのまま進む。
+4. 詳細操作が必要になったら管理パネルを開く。
+5. ターミナル主導に切り替えたいときは `cd apps/<name> && pnpm dev` や `pnpm forge render --app <name> --composition <id>` を使う。
+6. 祝賀演出を見て、次の1本を作る。
 
 ## 前提条件
 
