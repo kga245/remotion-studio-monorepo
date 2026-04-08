@@ -133,7 +133,7 @@ async function fileResponse(
     const chunkSize = end - start + 1;
     const chunk = fileBuffer.subarray(start, end + 1);
 
-    return new NextResponse(chunk, {
+    return new NextResponse(new Uint8Array(chunk), {
       status: 206,
       headers: {
         ...headers,
@@ -143,7 +143,7 @@ async function fileResponse(
     });
   }
 
-  return new NextResponse(fileBuffer, {
+  return new NextResponse(new Uint8Array(fileBuffer), {
     status: 200,
     headers: {
       ...headers,
