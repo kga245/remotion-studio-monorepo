@@ -90,7 +90,7 @@ const { isStart, isEnd } = useVideoEdges(10); // within 10 frames of edges
 
 - `useDelayedMount(startFrame)`: Delay content until frame
 - `useFrameRange(startFrame, endFrame)`: Show content within range
-- `useDelayedMountByTime(startSeconds, fps)`: Delay based on time
+- `useDelayedMountByTime(startSeconds)`: Delay based on time (reads `fps` from `useVideoConfig`)
 
 ### useVideoMetadata
 

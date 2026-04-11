@@ -1,9 +1,16 @@
 import { useCurrentFrame } from "remotion";
+import {
+  getLocalFrame,
+  getSegmentEnd,
+  isInSegment,
+  type TimingSegment,
+} from "@studio/timing";
 
-export interface SegmentConfig {
-  start: number;
-  duration: number;
-}
+/**
+ * Back-compat alias for the canonical `TimingSegment` type from
+ * `@studio/timing`. Existing consumers can keep referring to `SegmentConfig`.
+ */
+export type SegmentConfig = TimingSegment;
 
 export interface SegmentState {
   isActive: boolean;
@@ -18,11 +25,19 @@ export interface SegmentState {
  */
 export function useSegment(segment: SegmentConfig): SegmentState {
   const frame = useCurrentFrame();
-  const endFrame = segment.start + segment.duration;
+  const isActive = isInSegment(frame, segment);
+  const localFrame = getLocalFrame(frame, segment);
 
-  const isActive = frame >= segment.start && frame < endFrame;
-  const localFrame = isActive ? frame - segment.start : -1;
-  const progress = isActive ? localFrame / segment.duration : 0;
+  // Progress is 0 before the segment starts, 1 after it ends, and a linear
+  // ramp while active. Guard against a zero-duration segment to avoid NaN.
+  let progress: number;
+  if (isActive) {
+    progress = segment.duration > 0 ? localFrame / segment.duration : 1;
+  } else if (frame >= getSegmentEnd(segment)) {
+    progress = 1;
+  } else {
+    progress = 0;
+  }
 
   return {
     isActive,
@@ -38,9 +53,5 @@ export function useSegment(segment: SegmentConfig): SegmentState {
  */
 export function useActiveSegment(segments: SegmentConfig[]): number {
   const frame = useCurrentFrame();
-
-  return segments.findIndex(
-    (segment) =>
-      frame >= segment.start && frame < segment.start + segment.duration,
-  );
+  return segments.findIndex((segment) => isInSegment(frame, segment));
 }

@@ -16,7 +16,17 @@ export function cubicBezier(
   x2: number,
   y2: number,
 ): EasingFunction {
-  // Validate input
+  // Validate input: x-axis control points must be in [0, 1] for the curve
+  // to be a function of t; all four points must be finite to avoid
+  // non-convergent Newton-Raphson iteration.
+  if (
+    !Number.isFinite(x1) ||
+    !Number.isFinite(y1) ||
+    !Number.isFinite(x2) ||
+    !Number.isFinite(y2)
+  ) {
+    throw new Error("cubicBezier control points must be finite numbers");
+  }
   if (x1 < 0 || x1 > 1 || x2 < 0 || x2 > 1) {
     throw new Error("x1 and x2 must be between 0 and 1");
   }
@@ -25,10 +35,9 @@ export function cubicBezier(
     if (t <= 0) return 0;
     if (t >= 1) return 1;
 
-    // Binary search for the correct t value
+    // Newton-Raphson iteration: solve sampleCurveX(mid) === t for mid,
+    // then return sampleCurveY(mid).
     let mid = t;
-
-    // Newton-Raphson iteration for better performance
     for (let i = 0; i < 8; i++) {
       const x = sampleCurveX(mid, x1, x2);
       const slope = sampleCurveDerivativeX(mid, x1, x2);
@@ -44,27 +53,19 @@ export function cubicBezier(
 }
 
 /**
- * Sample the X value of the cubic bezier curve at time t
+ * Sample the X value of the cubic bezier curve at time t.
+ * P0 = (0, 0) and P3 = (1, 1) are fixed, so those terms collapse.
  */
 function sampleCurveX(t: number, x1: number, x2: number): number {
-  return (
-    (1 - t) ** 3 * 0 +
-    3 * (1 - t) ** 2 * t * x1 +
-    3 * (1 - t) * t ** 2 * x2 +
-    t ** 3 * 1
-  );
+  return 3 * (1 - t) ** 2 * t * x1 + 3 * (1 - t) * t ** 2 * x2 + t ** 3;
 }
 
 /**
- * Sample the Y value of the cubic bezier curve at time t
+ * Sample the Y value of the cubic bezier curve at time t.
+ * P0 = (0, 0) and P3 = (1, 1) are fixed, so those terms collapse.
  */
 function sampleCurveY(t: number, y1: number, y2: number): number {
-  return (
-    (1 - t) ** 3 * 0 +
-    3 * (1 - t) ** 2 * t * y1 +
-    3 * (1 - t) * t ** 2 * y2 +
-    t ** 3 * 1
-  );
+  return 3 * (1 - t) ** 2 * t * y1 + 3 * (1 - t) * t ** 2 * y2 + t ** 3;
 }
 
 /**

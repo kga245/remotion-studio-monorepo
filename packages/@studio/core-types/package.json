@@ -17,6 +17,10 @@
     "lint": "eslint \"src/**/*.ts\"",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@studio/easings": "workspace:*",
+    "@studio/timing": "workspace:*"
+  },
   "peerDependencies": {
     "remotion": "^4.0.0"
   },

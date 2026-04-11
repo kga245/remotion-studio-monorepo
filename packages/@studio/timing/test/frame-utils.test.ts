@@ -55,5 +55,13 @@ describe("frame-utils", () => {
       expect(getProgress(-10, 0, 100)).toBe(0);
       expect(getProgress(150, 0, 100)).toBe(1);
     });
+
+    it("should handle zero-length ranges without returning NaN", () => {
+      // start === end: frame before/at the point is 0, after is 1.
+      expect(getProgress(0, 5, 5)).toBe(0);
+      expect(getProgress(5, 5, 5)).toBe(0);
+      expect(getProgress(10, 5, 5)).toBe(1);
+      expect(Number.isNaN(getProgress(7, 5, 5))).toBe(false);
+    });
   });
 });
