@@ -21,6 +21,7 @@
     ".": {
       "package-name": "remotion-studio",
       "changelog-path": "CHANGELOG.md",
+      "bootstrap-sha": "0dc3bb963a3f22773b50c3d49e28af59b69b54cf",
       "draft": false,
       "prerelease": false
     }
