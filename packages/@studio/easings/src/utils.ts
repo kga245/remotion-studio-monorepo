@@ -25,16 +25,16 @@ export function mirrorEasing(easing: EasingFunction): EasingFunction {
 
 /**
  * Create a stepped easing function
- * @param steps - Number of steps
+ * @param stepCount - Number of steps
  * @param jumpStart - Whether to jump at the start of each step
  * @returns Stepped easing function
  */
 export function steps(
-  steps: number,
+  stepCount: number,
   jumpStart: boolean = false,
 ): EasingFunction {
   return (t: number) => {
-    const stepSize = 1 / steps;
+    const stepSize = 1 / stepCount;
     const step = Math.floor(t / stepSize);
     const offset = jumpStart ? 1 : 0;
     return Math.min((step + offset) * stepSize, 1);

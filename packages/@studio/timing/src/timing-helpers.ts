@@ -4,6 +4,8 @@
 export interface TimingSegment {
   start: number;
   duration: number;
+  /** Optional human-readable label for the segment */
+  label?: string;
 }
 
 /**

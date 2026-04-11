@@ -1,4 +1,5 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
+import { getProgress, secondsToFrames } from "@studio/timing";
 
 /**
  * Get animation progress (0-1) for current frame within a range
@@ -8,11 +9,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
  */
 export function useFrameProgress(startFrame: number, endFrame: number): number {
   const frame = useCurrentFrame();
-
-  if (frame <= startFrame) return 0;
-  if (frame >= endFrame) return 1;
-
-  return (frame - startFrame) / (endFrame - startFrame);
+  return getProgress(frame, startFrame, endFrame);
 }
 
 /**
@@ -28,13 +25,10 @@ export function useTimeProgress(
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const startFrame = startSeconds * fps;
-  const endFrame = startFrame + durationSeconds * fps;
+  const startFrame = secondsToFrames(startSeconds, fps);
+  const endFrame = startFrame + secondsToFrames(durationSeconds, fps);
 
-  if (frame <= startFrame) return 0;
-  if (frame >= endFrame) return 1;
-
-  return (frame - startFrame) / (endFrame - startFrame);
+  return getProgress(frame, startFrame, endFrame);
 }
 
 /**
@@ -45,5 +39,5 @@ export function useVideoProgress(): number {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
 
-  return Math.min(frame / durationInFrames, 1);
+  return getProgress(frame, 0, durationInFrames);
 }

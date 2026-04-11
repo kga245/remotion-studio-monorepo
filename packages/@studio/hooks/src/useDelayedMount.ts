@@ -1,4 +1,5 @@
-import { useCurrentFrame } from "remotion";
+import { useCurrentFrame, useVideoConfig } from "remotion";
+import { secondsToFrames } from "@studio/timing";
 
 /**
  * Delay mounting of a component until a specific frame
@@ -22,15 +23,13 @@ export function useFrameRange(startFrame: number, endFrame: number): boolean {
 }
 
 /**
- * Delay mounting based on time in seconds
+ * Delay mounting based on time in seconds. `fps` is read from the current
+ * Remotion video config, matching the style of `useTimeProgress`.
  * @param startSeconds - Time in seconds to start showing content
- * @param fps - Frames per second
  * @returns True if content should be shown
  */
-export function useDelayedMountByTime(
-  startSeconds: number,
-  fps: number,
-): boolean {
+export function useDelayedMountByTime(startSeconds: number): boolean {
   const frame = useCurrentFrame();
-  return frame >= startSeconds * fps;
+  const { fps } = useVideoConfig();
+  return frame >= secondsToFrames(startSeconds, fps);
 }

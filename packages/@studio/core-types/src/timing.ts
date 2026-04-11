@@ -1,11 +1,11 @@
 /**
- * Timing segment
+ * Re-export of the canonical `TimingSegment` from `@studio/timing`.
+ * The owning package is the single source of truth for this shape; this
+ * re-export lets `@studio/core-types` consumers access it without taking a
+ * direct dependency on `@studio/timing`.
  */
-export interface TimingSegment {
-  start: number;
-  duration: number;
-  label?: string;
-}
+export type { TimingSegment } from "@studio/timing";
+import type { TimingSegment } from "@studio/timing";
 
 /**
  * Timeline configuration

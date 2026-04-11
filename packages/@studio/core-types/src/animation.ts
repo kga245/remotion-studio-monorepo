@@ -1,7 +1,10 @@
 /**
- * Easing function type
+ * Re-export of the canonical `EasingFunction` from `@studio/easings`.
+ * Kept here so consumers of `@studio/core-types` don't need a direct
+ * dependency on `@studio/easings` when they only want the type.
  */
-export type EasingFunction = (t: number) => number;
+export type { EasingFunction } from "@studio/easings";
+import type { EasingFunction } from "@studio/easings";
 
 /**
  * Animation configuration
