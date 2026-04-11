@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    name: Release Please
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          config-file: .github/release-please-config.json
+          manifest-file: .github/.release-please-manifest.json
+          # GITHUB_TOKEN works for creating the Release PR and tags.
+          # Note: PRs opened by GITHUB_TOKEN do NOT automatically trigger
+          # other workflows (e.g. ci.yml). To run CI on the Release PR,
+          # either push an empty commit to it, close/reopen it, or
+          # configure a Personal Access Token with `repo` + `workflow`
+          # scopes and pass it here as `token: ${{ secrets.RELEASE_PAT }}`.
+          token: ${{ secrets.GITHUB_TOKEN }}
