@@ -1,4 +1,4 @@
-[EN](./README.md) | [JA](./README.ja.md)
+[English](./README.md) | 日本語 | [简体中文](./README.zh-CN.md) | [한국어](./README.ko.md)
 
 # Remotion Studio Monorepo
 
