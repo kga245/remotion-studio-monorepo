@@ -1,4 +1,4 @@
-English | [日本語](./README.ja.md) | [简体中文](./README.zh-CN.md) | [한국어](./README.ko.md)
+English | [日本語](./README.ja.md) | [简体中文](./README.zh-CN.md) | [한국어](./README.ko.md) | [Español](./README.es.md) | [Français](./README.fr.md)
 
 # Remotion Studio Monorepo
 
