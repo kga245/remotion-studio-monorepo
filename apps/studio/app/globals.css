@@ -46,8 +46,7 @@ body {
     ),
     linear-gradient(180deg, #f7fafc 0%, #edf2f8 48%, #f4f7fb 100%);
   font-family:
-    var(--font-body), "Hiragino Sans", "Yu Gothic UI",
-    "Meiryo", sans-serif;
+    var(--font-body), "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
 }
 
 body::before {
@@ -61,11 +60,7 @@ body::before {
       rgba(255, 255, 255, 0.1) 0%,
       rgba(255, 255, 255, 0) 46%
     ),
-    linear-gradient(
-      90deg,
-      rgba(15, 23, 42, 0.04) 1px,
-      transparent 1px
-    );
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
   background-size:
     100% 100%,
     22px 22px;

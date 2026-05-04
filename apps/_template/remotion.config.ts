@@ -33,3 +33,7 @@ Config.overrideWebpackConfig((currentConfiguration) => {
   } catch {}
   return config;
 });
+
+// HTML-in-canvas effects that use video or GPU post-processing need ANGLE.
+// This keeps Studio and CLI renders aligned with Remotion's recommendation.
+Config.setChromiumOpenGlRenderer("angle");

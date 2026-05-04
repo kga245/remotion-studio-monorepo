@@ -101,6 +101,7 @@ node -v && pnpm -v && ffmpeg -version
 - **Monorepo** powered by pnpm workspaces
 - **Centralized dependency management** via **pnpm Catalog**
 - **Templates** for 2D & 3D projects (`apps/_template`, `apps/3D-template`)
+- **HTML-in-canvas example** for Remotion 4.0.455+ (`apps/examples/html-in-canvas`)
 - **Forge Studio dashboard** (`pnpm forge studio`) for project management
 - **Productivity scripts** (project scaffolding, render helper, upgrade automation)
 - **Offline reference** (`docs/remotion-reference.md`)
@@ -172,6 +173,7 @@ remotion-studio-monorepo/
 | [Structure](./docs/structure.md)                          | Monorepo architecture          |
 | [Adding Dependencies](./docs/adding-deps.md)              | How to add packages            |
 | [Assets Guide](./docs/assets.md)                          | Managing assets                |
+| [HTML-in-canvas](./docs/html-in-canvas.md)                | Canvas post-processing setup   |
 | [3D Notes](./docs/3d-notes.md)                            | Three.js / R3F setup           |
 | [AI Skill Playbook](./docs/ai/remotion-skill-playbook.md) | Skill-first workflow           |
 | [Upgrading](./docs/upgrading-remotion.md)                 | Remotion version management    |

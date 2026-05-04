@@ -18,6 +18,7 @@ import type {
   ProjectState,
   RenderAsset,
 } from "@/components/studio/types";
+import { ProjectThumbnail } from "@/components/studio/project-thumbnail";
 import { cn } from "@/lib/utils";
 
 export function ProjectPanel({
@@ -167,9 +168,8 @@ export function ProjectPanel({
                 />
               ) : (
                 <div className="relative aspect-video">
-                  <img
-                    src={project.thumbnailUrl}
-                    alt={`${project.title} thumbnail`}
+                  <ProjectThumbnail
+                    project={project}
                     className="h-full w-full object-cover opacity-92"
                   />
                   <div className="absolute inset-0 flex items-end bg-[linear-gradient(180deg,rgba(2,6,23,0.08),rgba(2,6,23,0.48))] p-4">

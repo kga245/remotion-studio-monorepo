@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20, 22]
+        node-version: [22]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -97,7 +97,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -134,7 +134,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -166,7 +166,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20, 22]
+        node-version: [22]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -198,23 +198,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
+      - name: Install FFmpeg
         run: |
-          pnpm -F @studio/timing build
-          pnpm -F @studio/hooks build
-          pnpm -F @studio/core-types build
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Ensure Remotion browser
+        run: pnpm remotion browser ensure
+
+      - name: Build packages
+        run: pnpm build:packages
 
       - name: Build apps
         run: |
-          # Build all non-template apps if any exist
-          if [ -d "apps" ]; then
-            for app in apps/*; do
-              if [ -d "$app" ] && [ -f "$app/package.json" ]; then
-                app_name=$(basename "$app")
-                if [[ ! "$app_name" =~ ^_ ]] && [[ ! "$app_name" =~ template ]]; then
-                  echo "Building $app_name..."
-                  pnpm -C "$app" build || echo "No build script for $app_name"
-                fi
-              fi
-            done
-          fi
+          set -euo pipefail
+
+          mapfile -t app_dirs < <(find apps -type f -name package.json -print | xargs -n1 dirname | sort -u)
+
+          for app in "${app_dirs[@]}"; do
+            app_name="${app#apps/}"
+            app_base=$(basename "$app")
+
+            if [[ "$app_base" =~ ^_ ]] || [[ "$app_name" =~ template ]]; then
+              echo "Skipping template app: $app_name"
+              continue
+            fi
+
+            echo "Building $app_name..."
+            pnpm -C "$app" build
+          done

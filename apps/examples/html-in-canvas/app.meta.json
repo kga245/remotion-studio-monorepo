@@ -1,0 +1,8 @@
+{
+  "title": "HTML-in-canvas Demo",
+  "description": "A Remotion 4.0.455+ example that post-processes DOM content through HtmlInCanvas.",
+  "tags": ["example", "html-in-canvas", "canvas", "remotion"],
+  "thumbnail": "public/thumbnail.svg",
+  "lastRendered": null,
+  "category": "example"
+}

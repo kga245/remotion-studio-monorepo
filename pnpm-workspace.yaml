@@ -8,6 +8,7 @@ onlyBuiltDependencies:
   - esbuild
   - protobufjs
   - sharp
+  - unrs-resolver
 
 strictDepBuilds: true
 
@@ -20,9 +21,10 @@ catalog:
 
   # Next.js
   next: ^15.0.0
+  eslint-config-next: ^15.0.0
 
   # Remotion Core
-  remotion: 4.0.429
+  remotion: 4.0.457
   zod: ^4.3.6
 
   # TypeScript & Node Types
@@ -30,6 +32,7 @@ catalog:
   "@types/node": ^24.5.2
 
   # Development Tools
+  "@eslint/eslintrc": ^3.3.5
   eslint: ^9.8.0
   prettier: ^3.3.3
   tsx: ^4.16.2
@@ -41,41 +44,41 @@ catalog:
   zustand: ^5.0.8
 
   # Remotion Official Packages
-  "@remotion/cli": 4.0.429
-  "@remotion/studio": 4.0.429
-  "@remotion/player": 4.0.429
-  "@remotion/renderer": 4.0.429
-  "@remotion/bundler": 4.0.429
-  "@remotion/eslint-plugin": 4.0.429
-  "@remotion/eslint-config": 4.0.429
-  "@remotion/lambda": 4.0.429
-  "@remotion/cloudrun": 4.0.429
-  "@remotion/three": 4.0.429
-  "@remotion/skia": 4.0.429
-  "@remotion/lottie": 4.0.429
-  "@remotion/gif": 4.0.429
-  "@remotion/rive": 4.0.429
-  "@remotion/shapes": 4.0.429
-  "@remotion/paths": 4.0.429
-  "@remotion/motion-blur": 4.0.429
-  "@remotion/transitions": 4.0.429
-  "@remotion/animation-utils": 4.0.429
-  "@remotion/animated-emoji": 4.0.429
-  "@remotion/layout-utils": 4.0.429
-  "@remotion/noise": 4.0.429
-  "@remotion/media": 4.0.429
-  "@remotion/media-utils": 4.0.429
-  "@remotion/media-parser": 4.0.429
-  "@remotion/webcodecs": 4.0.429
-  "@remotion/captions": 4.0.429
-  "@remotion/fonts": 4.0.429
-  "@remotion/google-fonts": 4.0.429
-  "@remotion/preload": 4.0.429
-  "@remotion/install-whisper-cpp": 4.0.429
-  "@remotion/whisper-web": 4.0.429
-  "@remotion/openai-whisper": 4.0.429
-  "@remotion/tailwind": 4.0.429
-  "@remotion/tailwind-v4": 4.0.429
-  "@remotion/enable-scss": 4.0.429
-  "@remotion/zod-types": 4.0.429
-  "@remotion/licensing": 4.0.429
+  "@remotion/cli": 4.0.457
+  "@remotion/studio": 4.0.457
+  "@remotion/player": 4.0.457
+  "@remotion/renderer": 4.0.457
+  "@remotion/bundler": 4.0.457
+  "@remotion/eslint-plugin": 4.0.457
+  "@remotion/eslint-config": 4.0.457
+  "@remotion/lambda": 4.0.457
+  "@remotion/cloudrun": 4.0.457
+  "@remotion/three": 4.0.457
+  "@remotion/skia": 4.0.457
+  "@remotion/lottie": 4.0.457
+  "@remotion/gif": 4.0.457
+  "@remotion/rive": 4.0.457
+  "@remotion/shapes": 4.0.457
+  "@remotion/paths": 4.0.457
+  "@remotion/motion-blur": 4.0.457
+  "@remotion/transitions": 4.0.457
+  "@remotion/animation-utils": 4.0.457
+  "@remotion/animated-emoji": 4.0.457
+  "@remotion/layout-utils": 4.0.457
+  "@remotion/noise": 4.0.457
+  "@remotion/media": 4.0.457
+  "@remotion/media-utils": 4.0.457
+  "@remotion/media-parser": 4.0.457
+  "@remotion/webcodecs": 4.0.457
+  "@remotion/captions": 4.0.457
+  "@remotion/fonts": 4.0.457
+  "@remotion/google-fonts": 4.0.457
+  "@remotion/preload": 4.0.457
+  "@remotion/install-whisper-cpp": 4.0.457
+  "@remotion/whisper-web": 4.0.457
+  "@remotion/openai-whisper": 4.0.457
+  "@remotion/tailwind": 4.0.457
+  "@remotion/tailwind-v4": 4.0.457
+  "@remotion/enable-scss": 4.0.457
+  "@remotion/zod-types": 4.0.457
+  "@remotion/licensing": 4.0.457

@@ -101,6 +101,7 @@ node -v && pnpm -v && ffmpeg -version
 - **pnpm workspaces** によるモノレポ運用
 - **pnpm Catalog による依存関係の一元管理**
 - **2D・3D テンプレート** 搭載（`apps/_template`、`apps/3D-template`）
+- **HTML-in-canvas サンプル** 搭載（Remotion 4.0.455+、`apps/examples/html-in-canvas`）
 - **Forge Studio ダッシュボード**（`pnpm forge studio`）で作品管理
 - **生産性スクリプト** (プロジェクト作成、レンダー補助、アップグレード自動化)
 - **オフライン参照** (`docs/remotion-reference.md`)
@@ -172,6 +173,7 @@ remotion-studio-monorepo/
 | [Structure](./docs/structure.ja.md)                          | モノレポ構成                |
 | [Adding Dependencies](./docs/adding-deps.ja.md)              | パッケージ追加方法          |
 | [Assets Guide](./docs/assets.ja.md)                          | アセット管理                |
+| [HTML-in-canvas](./docs/html-in-canvas.ja.md)                | Canvas post-processing 設定 |
 | [3D Notes](./docs/3d-notes.ja.md)                            | Three.js / R3F セットアップ |
 | [AI Skill Playbook](./docs/ai/remotion-skill-playbook.ja.md) | Skill-First 運用ルール      |
 | [Upgrading](./docs/upgrading-remotion.ja.md)                 | Remotion バージョン管理     |

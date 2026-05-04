@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "remotion studio",
-    "build": "remotion build",
-    "render": "remotion render",
+    "build": "remotion render src/index.ts AnimationsShowcase out/animations-showcase.mp4",
+    "render": "remotion render src/index.ts AnimationsShowcase out/animations-showcase.mp4",
     "preview": "remotion preview",
     "lint": "eslint \"src/**/*.{ts,tsx}\" remotion.config.ts"
   },
