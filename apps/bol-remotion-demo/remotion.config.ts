@@ -2,6 +2,10 @@ import path from "path";
 import fs from "fs";
 import { Config } from "@remotion/cli/config";
 
+// LightLeak (and any other WebGL-using component) needs ANGLE on macOS to
+// access GL during headless renders. No-op for studio preview.
+Config.setChromiumOpenGlRenderer("angle");
+
 Config.overrideWebpackConfig((currentConfiguration) => {
   const config = currentConfiguration;
   const alias = (config.resolve?.alias ?? {}) as Record<string, string>;

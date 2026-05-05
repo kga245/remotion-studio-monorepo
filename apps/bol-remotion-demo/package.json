@@ -12,6 +12,7 @@
   "dependencies": {
     "@remotion/animation-utils": "catalog:",
     "@remotion/google-fonts": "catalog:",
+    "@remotion/light-leaks": "catalog:",
     "@remotion/lottie": "catalog:",
     "@remotion/media-utils": "catalog:",
     "@remotion/paths": "catalog:",

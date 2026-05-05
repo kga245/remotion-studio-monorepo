@@ -1,23 +1,9 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
 import { wipe } from "@remotion/transitions/wipe";
-import { loadFont } from "@remotion/google-fonts/Roboto";
-import {
-  colors,
-  semantic,
-  typography,
-  sizes,
-  springs,
-  beats,
-} from "../styles/theme";
+import { Title } from "./Title";
 import { SpringVsInterpolate } from "./SpringVsInterpolate";
 import { SequencedText } from "./SequencedText";
 import { PathsAndShapes } from "./PathsAndShapes";
@@ -25,8 +11,6 @@ import { AudioCaptions } from "./AudioCaptions";
 import { LottieScene } from "./LottieScene";
 import { ThreeScene } from "./ThreeScene";
 import { Outro } from "./Outro";
-
-const { fontFamily } = loadFont("normal", { weights: ["300", "400", "700"] });
 
 // Per-vignette runtime in frames at 30fps. AudioCaptions runs longer to host
 // the full VO line (~6s) plus a beat of held silence at the end.
@@ -41,73 +25,11 @@ const FADE_LONG = linearTiming({ durationInFrames: 30 });
 const SLIDE = linearTiming({ durationInFrames: 24 });
 const WIPE = linearTiming({ durationInFrames: 24 });
 
-const TitleCard: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  const subtitleIn = spring({ frame, fps, config: springs.smooth });
-  const titleIn = spring({
-    frame: frame - beats.enterShort,
-    fps,
-    config: springs.snappy,
-  });
-  const underlineIn = spring({
-    frame: frame - beats.enterMedium - 6,
-    fps,
-    config: springs.smooth,
-  });
-
-  return (
-    <AbsoluteFill
-      style={{
-        background: semantic.bgDark,
-        color: semantic.textOnDark,
-        fontFamily,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div style={{ textAlign: "center", padding: 80 }}>
-        <div
-          style={{
-            ...typography.h2,
-            fontSize: sizes.h2,
-            color: colors.cyan,
-            opacity: subtitleIn,
-            transform: `translateY(${(1 - subtitleIn) * 12}px)`,
-            marginBottom: 24,
-          }}
-        >
-          BOL Agency · Motion demo
-        </div>
-        <div
-          style={{
-            ...typography.h1,
-            fontSize: sizes.display,
-            opacity: titleIn,
-            transform: `translateY(${(1 - titleIn) * 24}px)`,
-          }}
-        >
-          Remotion capabilities
-        </div>
-        <div
-          style={{
-            margin: "32px auto 0",
-            height: 6,
-            width: 480 * underlineIn,
-            background: colors.orange,
-          }}
-        />
-      </div>
-    </AbsoluteFill>
-  );
-};
-
 export const Showcase: React.FC = () => {
   return (
     <TransitionSeries>
       <TransitionSeries.Sequence durationInFrames={TITLE_LEN}>
-        <TitleCard />
+        <Title />
       </TransitionSeries.Sequence>
 
       <TransitionSeries.Transition presentation={fade()} timing={FADE} />
