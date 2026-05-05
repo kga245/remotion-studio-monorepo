@@ -31,7 +31,41 @@ This demo app is a curated audition pool. **Pick the 6–10 vignettes that read 
 
 ---
 
-## 3. The audition pool (23 scenes)
+## 3. Touring the studio (30 seconds before scenes)
+
+Before scrubbing through scenes, orient your audience to the chrome. The studio at **http://localhost:3001** is divided into five panels — point them out in this order so everything that follows makes sense.
+
+### The five panels
+
+1. **Composition list (left rail).** Every scene we'll show is a separate composition listed here, grouped by capability folder (`A-Foundations`, `B-Animation-primitives`, … `L-Closing`) matching this deck's section letters. The master `Showcase` sits at the top, ungrouped. Click any name to load that composition into the preview.
+
+2. **Preview pane (center).** This is exactly what gets rendered as a frame. WYSIWYG — there is no "it'll look different on export." All audition scenes are 1920×1080 @ 30fps.
+
+3. **Timeline scrubber (bottom).** A frame-accurate playhead. Click anywhere on the timeline to jump there. Spacebar plays / pauses. The frame number and timecode on the left are the current position; the duration on the right is the composition's full length.
+
+4. **Props panel (right side, "Props" tab).** Empty for most scenes. **Click the `ParametricCard` composition under `J-Parametric` and the panel populates** with text inputs, color pickers, a background dropdown, a number slider, and a checkbox. Edit any value — the preview re-renders instantly. _This is the live editing story; budget 20 seconds here._
+
+5. **Renders panel (right side, "Renders" tab).** Kick off MP4 / WebM renders from the UI. The CLI is faster for repeat work but this panel is how non-coders get a video out of the studio.
+
+### Five things to call out as you tour
+
+| What                                                      | Why staff should care                                                                                 |
+| --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Folder structure in the left rail**                     | "Same organization as the deck. You're going to scrub each one."                                      |
+| **Frame number under the playhead**                       | "Every animation we'll show is just math on this number."                                             |
+| **Hot Module Reload** (mention; you'll see it indirectly) | "When the developer saves a code change, this preview updates in under a second."                     |
+| **The Props panel on `ParametricCard`**                   | "This is the no-code editing surface. A designer can change colors and copy without touching a file." |
+| **The Renders tab**                                       | "When we like a take, this button produces an MP4. No After Effects, no Premiere."                    |
+
+### A scripted 30-second tour
+
+> "What you're looking at is the same React application that produces our final renders, with a frame scrubber bolted on. Down the left, every scene we'll go through tonight. Center is the preview — exactly what ships. Bottom is the frame-accurate timeline. Right is two tabs: Props for live editing, Renders for shipping. I'll click `ParametricCard` to show you what 'live editing' means here, then we'll go scene by scene."
+
+— _Click ParametricCard. Edit headline. Edit accent color. Watch preview update. Move to scene 1 of the audition._
+
+---
+
+## 4. The audition pool (23 scenes)
 
 Each scene is its own composition. In studio, click the name in the left rail to scrub.
 
@@ -235,7 +269,7 @@ Closing card. "Made with Remotion · BOL Agency · brand book in motion." Mirror
 
 ---
 
-## 4. The master timeline
+## 5. The master timeline
 
 #### `Showcase` &nbsp; _Composition: `Showcase`_ &nbsp; _Duration: 50s_
 
@@ -246,7 +280,7 @@ This is the candidate for the staff demo cut. Once you pick favorites from the a
 
 ---
 
-## 5. Practical considerations
+## 6. Practical considerations
 
 ### Where Remotion fits
 
@@ -273,7 +307,7 @@ Studio + local renders are free. Lambda renders are billed per second of GPU/CPU
 
 ---
 
-## 6. Suggested 60-second show reel (Kelly's pick)
+## 7. Suggested 60-second show reel (Kelly's pick)
 
 After scrubbing the audition pool, replace the Showcase composition with whatever 7–8 vignettes feel most "BOL". My early bet (you'll override this):
 
@@ -291,7 +325,7 @@ Total: ~46s + transition overlap.
 
 ---
 
-## 7. Next steps after the audition
+## 8. Next steps after the audition
 
 1. Pick favorites from the studio (Kelly).
 2. I rewrite `Showcase.tsx` with the chosen scenes + transitions.
