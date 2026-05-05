@@ -75,3 +75,7 @@ bash
 
 # Claude Code agent isolation worktrees — never commit
 .claude/worktrees/
+
+# Sibling agent-tooling worktrees and per-session state — never commit
+.claire/worktrees/
+.superpowers/brainstorm/
