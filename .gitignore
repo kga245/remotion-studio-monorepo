@@ -72,3 +72,6 @@ Thumbs.db
 # Remotion
 remotion-studio@*
 bash
+
+# Claude Code agent isolation worktrees — never commit
+.claude/worktrees/
