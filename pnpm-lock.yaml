@@ -462,6 +462,9 @@ importers:
       "@remotion/transitions":
         specifier: "catalog:"
         version: 4.0.457(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@remotion/zod-types":
+        specifier: "catalog:"
+        version: 4.0.457(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@4.3.6)
       "@types/three":
         specifier: ^0.170.0
         version: 0.170.0

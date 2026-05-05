@@ -19,6 +19,7 @@
     "@remotion/shapes": "catalog:",
     "@remotion/three": "catalog:",
     "@remotion/transitions": "catalog:",
+    "@remotion/zod-types": "catalog:",
     "@react-three/fiber": "^8.17.10",
     "three": "0.169.0",
     "@types/three": "^0.170.0",
