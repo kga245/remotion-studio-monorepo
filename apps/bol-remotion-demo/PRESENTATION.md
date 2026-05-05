@@ -67,6 +67,31 @@ Before scrubbing through scenes, orient your audience to the chrome. The studio 
 
 — _Click ParametricCard. Edit headline. Edit accent color. Watch preview update. Move to scene 1 of the audition._
 
+### Bonus: 90 seconds on project anatomy (optional)
+
+> _Skip if your audience is purely visual. Helpful for technically-curious staff who want to know "where do the files live?"_
+
+This isn't one Remotion project — it's a **monorepo of seven** sharing a brand toolkit. Open the repo at `~/Documents/GitHub/remotion-studio-monorepo/`. Five things to point out:
+
+1. **`apps/`** — Each subfolder is a self-contained Remotion project with its own studio, deps, and renders. The current count: `bol-remotion-demo` (this deck), `miter-llm-webinar` (the BOL+Miter client work), `pixel-typography` (typography experiments), `studio` (a Next.js dashboard for browsing all the apps), `examples`, `_template` (the scaffold), `3D-template` (3D scaffold). Run `pnpm create:project <name>` to mint a new app from the template — one command.
+
+2. **`packages/@studio/`** — Shared workspace packages used by _any_ app. Six of them today:
+   - `core-types`, `easings`, `timing`, `hooks` — animation primitives reused across projects
+   - `transitions` — shared transition presentations
+   - **`kinetic-captions`** — the SRT-driven caption engine that drives the Miter webinar app's word-by-word captions, registered tonight
+3. **`scripts/`** — Eleven repo-level helpers including `create-project.ts`, `forge.ts`, `render-app.ts`, `analyze-bundle.ts`, `upgrade-remotion.ts`. The command surface that keeps the monorepo coherent.
+
+4. **`docs/`** — Twenty-eight bilingual (EN + JA) markdown docs covering architecture, asset handling, getting started, recipes, troubleshooting, and Remotion upgrade procedure. Consult these when you onboard a new dev or revisit infrastructure.
+
+5. **Inside any app** (e.g. `apps/bol-remotion-demo/`):
+   - `src/` — your code. `Root.tsx` registers compositions; `scenes/` holds one file per scene; `styles/theme.ts` is the brand kit; `components/` is shared UI helpers.
+   - `public/` — static assets (audio MP3s, Lottie JSON, images). Loaded via Remotion's `staticFile()`.
+   - `out/` — rendered MP4s and PNG stills (gitignored).
+   - `docs/` — app-specific deck + screenshots (this file lives here).
+   - `package.json` — declares deps and the `dev` / `build` / `lint` scripts.
+
+> **Talking point:** "Notice how little is special about each app — they're all React projects sharing one design system. When the brand evolves, we update one file in `packages/@studio/` and every app inherits the change at next render."
+
 ---
 
 ## 4. The audition pool (23 scenes)
