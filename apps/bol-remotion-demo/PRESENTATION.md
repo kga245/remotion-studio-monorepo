@@ -35,6 +35,10 @@ This demo app is a curated audition pool. **Pick the 6–10 vignettes that read 
 
 Before scrubbing through scenes, orient your audience to the chrome. The studio at **http://localhost:3001** is divided into five panels — point them out in this order so everything that follows makes sense.
 
+![Annotated studio chrome with ParametricCard loaded](docs/stills/studio-chrome.png)
+
+> _Studio with `ParametricCard` selected. The five numbered callouts match the panels below._
+
 ### The five panels
 
 1. **Composition list (left rail).** Every scene we'll show is a separate composition listed here, grouped by capability folder (`A-Foundations`, `B-Animation-primitives`, … `L-Closing`) matching this deck's section letters. The master `Showcase` sits at the top, ungrouped. Click any name to load that composition into the preview.
