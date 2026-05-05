@@ -19,6 +19,10 @@ import { SequenceLadder } from "./SequenceLadder";
 import { Typewriter } from "./Typewriter";
 import { HighlightPen } from "./HighlightPen";
 import { LightLeaks } from "./LightLeaks";
+import { BarChart } from "./BarChart";
+import { TransitionGallery } from "./TransitionGallery";
+import { PieChart } from "./PieChart";
+import { LineChartMarker } from "./LineChartMarker";
 import { SequencedText } from "./SequencedText";
 import { PathsAndShapes } from "./PathsAndShapes";
 import { AudioCaptions } from "./AudioCaptions";
@@ -51,6 +55,14 @@ export const scenes: SceneEntry[] = [
   { id: "Typewriter", component: Typewriter, durationInFrames: 240 },
   { id: "HighlightPen", component: HighlightPen, durationInFrames: 180 },
   { id: "LightLeaks", component: LightLeaks, durationInFrames: 180 },
+  { id: "BarChart", component: BarChart, durationInFrames: 180 },
+  {
+    id: "TransitionGallery",
+    component: TransitionGallery,
+    durationInFrames: 234,
+  },
+  { id: "PieChart", component: PieChart, durationInFrames: 180 },
+  { id: "LineChartMarker", component: LineChartMarker, durationInFrames: 180 },
   { id: "SequencedText", component: SequencedText, durationInFrames: 180 },
   { id: "PathsAndShapes", component: PathsAndShapes, durationInFrames: 180 },
   { id: "AudioCaptions", component: AudioCaptions, durationInFrames: 240 },
