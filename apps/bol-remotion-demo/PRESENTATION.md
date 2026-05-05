@@ -31,7 +31,7 @@ This demo app is a curated audition pool. **Pick the 6–10 vignettes that read 
 
 ---
 
-## 3. The audition pool (20 scenes)
+## 3. The audition pool (21 scenes)
 
 Each scene is its own composition. In studio, click the name in the left rail to scrub.
 
@@ -173,18 +173,6 @@ A BOL-orange torus knot rotating in 3D, lit with two directional lights (warm ke
 
 ---
 
-### J. Parametric — _one composition, many videos_
-
-#### `ParametricCard` &nbsp; _Duration: 4s_
-
-A title card backed by a Zod schema. The right-side **Props panel** in the studio is auto-populated with editable controls — text inputs for headline/subtitle, color pickers (via `zColor()` from `@remotion/zod-types`) for accent and text colors, a dropdown for background mode, a number slider for underline width, a checkbox for the underline. Edit any value and the preview re-renders live.
-
-![ParametricCard](docs/stills/parametric-card.png)
-
-> **Talking point:** "This is the personalization story. The Props panel is just the design-time view of the schema — at render time, we pass `--props='{...}'` and produce as many variants as we want from one composition. 200 welcome videos, 200 different names, one composition file."
-
----
-
 ### I. Transitions — _between vignettes_
 
 #### `TransitionGallery` &nbsp; _Duration: 8s_
@@ -194,6 +182,18 @@ Cycles through five `@remotion/transitions` presentations back-to-back: `fade()`
 ![TransitionGallery](docs/stills/transition-gallery-72.png)
 
 > **Talking point:** "These are the join cuts between vignettes. The `Showcase` composition uses three of them already."
+
+---
+
+### J. Parametric — _one composition, many videos_
+
+#### `ParametricCard` &nbsp; _Duration: 4s_
+
+A title card backed by a Zod schema. The right-side **Props panel** in the studio is auto-populated with editable controls — text inputs for headline/subtitle, color pickers (via `zColor()` from `@remotion/zod-types`) for accent and text colors, a dropdown for background mode, a number slider for underline width, a checkbox for the underline. Edit any value and the preview re-renders live.
+
+![ParametricCard](docs/stills/parametric-card.png)
+
+> **Talking point:** "This is the personalization story. The Props panel is just the design-time view of the schema — at render time, we pass `--props='{...}'` and produce as many variants as we want from one composition. 200 welcome videos, 200 different names, one composition file."
 
 ---
 
