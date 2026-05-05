@@ -1,0 +1,34 @@
+{
+  "name": "@studio/bol-remotion-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "remotion studio",
+    "preview": "remotion preview",
+    "build": "remotion render src/index.ts Showcase out/showcase.mp4",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" remotion.config.ts"
+  },
+  "dependencies": {
+    "@remotion/animation-utils": "catalog:",
+    "@remotion/google-fonts": "catalog:",
+    "@remotion/lottie": "catalog:",
+    "@remotion/media-utils": "catalog:",
+    "@remotion/paths": "catalog:",
+    "@remotion/shapes": "catalog:",
+    "@remotion/three": "catalog:",
+    "@remotion/transitions": "catalog:",
+    "@react-three/fiber": "^8.17.10",
+    "three": "0.169.0",
+    "@types/three": "^0.170.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "remotion": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@remotion/cli": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  }
+}
