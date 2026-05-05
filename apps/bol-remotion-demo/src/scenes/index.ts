@@ -16,6 +16,8 @@ import { SpringTuning } from "./SpringTuning";
 import { SpringVsInterpolate } from "./SpringVsInterpolate";
 import { ColorInterpolation } from "./ColorInterpolation";
 import { SequenceLadder } from "./SequenceLadder";
+import { SeriesSequence } from "./SeriesSequence";
+import { LoopFreeze } from "./LoopFreeze";
 import { Typewriter } from "./Typewriter";
 import { HighlightPen } from "./HighlightPen";
 import { LightLeaks } from "./LightLeaks";
@@ -52,6 +54,8 @@ export const scenes: SceneEntry[] = [
     durationInFrames: 180,
   },
   { id: "SequenceLadder", component: SequenceLadder, durationInFrames: 180 },
+  { id: "SeriesSequence", component: SeriesSequence, durationInFrames: 180 },
+  { id: "LoopFreeze", component: LoopFreeze, durationInFrames: 180 },
   { id: "Typewriter", component: Typewriter, durationInFrames: 240 },
   { id: "HighlightPen", component: HighlightPen, durationInFrames: 180 },
   { id: "LightLeaks", component: LightLeaks, durationInFrames: 180 },

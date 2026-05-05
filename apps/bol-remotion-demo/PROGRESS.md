@@ -22,7 +22,7 @@ Kelly asked for an expansive set of Remotion capability scenes (audition pool fo
 
 ## Scene inventory
 
-20 compositions registered. All standalone-previewable in studio. ✅ = verified via still render.
+23 compositions registered (20 main + 1 parametric + Series.Sequence + Loop/Freeze additions). All standalone-previewable in studio. ✅ = verified via still render.
 
 | #   | Scene file                                                    | Category             | Compositional API                                      | Status          |
 | --- | ------------------------------------------------------------- | -------------------- | ------------------------------------------------------ | --------------- |
@@ -33,6 +33,8 @@ Kelly asked for an expansive set of Remotion capability scenes (audition pool fo
 | 5   | [SpringVsInterpolate.tsx](src/scenes/SpringVsInterpolate.tsx) | Animation primitives | `spring`, `interpolate`                                | ✅ pre-existing |
 | 6   | [ColorInterpolation.tsx](src/scenes/ColorInterpolation.tsx)   | Animation primitives | `interpolateColors`                                    | ✅              |
 | 7   | [SequenceLadder.tsx](src/scenes/SequenceLadder.tsx)           | Sequencing           | `<Sequence from={...}>`                                | ✅              |
+| 7a  | [SeriesSequence.tsx](src/scenes/SeriesSequence.tsx)           | Sequencing           | `<Series>`, `Series.Sequence`                          | ✅              |
+| 7b  | [LoopFreeze.tsx](src/scenes/LoopFreeze.tsx)                   | Sequencing           | `<Loop>`, `<Freeze frame>`                             | ✅              |
 | 8   | [SequencedText.tsx](src/scenes/SequencedText.tsx)             | Text                 | `spring` stagger                                       | ✅ pre-existing |
 | 9   | [Typewriter.tsx](src/scenes/Typewriter.tsx)                   | Text                 | string slicing + cursor blink                          | ✅              |
 | 10  | [HighlightPen.tsx](src/scenes/HighlightPen.tsx)               | Text                 | spring → `scaleX` wipe                                 | ✅              |
@@ -87,7 +89,7 @@ All in `out/stills/`. Visual verification per scene that's been rendered. Showca
 - **Caption timing in [AudioCaptions.tsx:24](src/scenes/AudioCaptions.tsx)** — frame-by-frame tune against the actual VO audio.
 - **Lottie content** — `public/lottie/animation.json` is a stranger's animation from LottieFiles. Replace with a BOL brand asset.
 - **Final voiceover line** — current line is "Every frame, on brand. Every animation, generated from code." (ElevenLabs default voice). Easy to regenerate with a different line / voice.
-- **Tier-3 scenes from IDEAS.md** that I skipped: `Series.Sequence`, `Loop/Freeze`, `MotionBlur`, `Confetti/particles`, `AudioWaveform` (smooth path version), `ZodSchema` parametrization. All would slot in as additional standalone scenes.
+- **Tier-3 scenes from IDEAS.md** still not built: `MotionBlur`, `Confetti/particles`, `AudioWaveform` (smooth path version). All would slot in as additional standalone scenes. (Series.Sequence, Loop/Freeze, and ZodSchema parametrization have since been added.)
 
 ## Commit log (this session)
 

@@ -31,7 +31,7 @@ This demo app is a curated audition pool. **Pick the 6–10 vignettes that read 
 
 ---
 
-## 3. The audition pool (21 scenes)
+## 3. The audition pool (23 scenes)
 
 Each scene is its own composition. In studio, click the name in the left rail to scrub.
 
@@ -92,6 +92,26 @@ Five branded cards (Brief → Concept → Build → Review → Ship) each enter 
 ![SequenceLadder](docs/stills/sequence-ladder.png)
 
 > **Talking point:** "This is the building block for any process video, sales-funnel explainer, or product walkthrough."
+
+#### `SeriesSequence` &nbsp; _Duration: 6s_
+
+Three cards (Brief → Build → Ship) play one-after-another using `<Series>`. The whole point is that **`<Series>` automates the `from`-frame math** — you don't write `from={0}`, `from={60}`, `from={120}` by hand. Change a step's duration and everything downstream re-flows automatically.
+
+![SeriesSequence](docs/stills/series-sequence.png)
+
+> **Talking point:** "If `Sequence` is the manual transmission, `Series` is the automatic. Same outcome, fewer ways to get the math wrong."
+
+#### `LoopFreeze` &nbsp; _Duration: 6s_
+
+Three columns hosting the same pulse animation, each wrapped differently:
+
+- **Normal** — `<Pulse />` plays once, settles.
+- **Looped 3×** — `<Loop times={3}>` repeats the same animation back-to-back.
+- **Frozen @15** — `<Freeze frame={15}>` pins `useCurrentFrame()` to 15. The animation never moves.
+
+![LoopFreeze](docs/stills/loop-freeze.png)
+
+> **Talking point:** "`Loop` is for badges, gifs, idle states. `Freeze` is for pinning a poster frame — useful when you want a still slide to follow a moving intro without re-animating it."
 
 ---
 
