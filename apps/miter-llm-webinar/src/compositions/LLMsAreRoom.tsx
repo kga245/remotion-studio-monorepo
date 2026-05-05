@@ -146,7 +146,7 @@ export const LLMsAreRoom: React.FC = () => {
           bottom: 80,
           opacity: contextOpacity,
           transform: `translateY(${contextY}px)`,
-          fontSize: 26,
+          fontSize: 30,
           fontWeight: 300,
           color: "#ffffff77",
           textAlign: "center",

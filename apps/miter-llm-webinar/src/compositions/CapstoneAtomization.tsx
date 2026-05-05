@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -12,14 +11,50 @@ import { COLORS, fontFamily } from "../theme";
 // One capstone explodes into derivative formats
 
 const DERIVATIVES = [
-  { label: "Blog Post", emoji: "📝", angle: -80, color: COLORS.orange, delay: 60 },
+  {
+    label: "Blog Post",
+    emoji: "📝",
+    angle: -80,
+    color: COLORS.orange,
+    delay: 60,
+  },
   { label: "FAQ Page", emoji: "❓", angle: -40, color: "#a78bfa", delay: 72 },
-  { label: "Social Thread", emoji: "🧵", angle: 0, color: COLORS.cyan, delay: 84 },
-  { label: "Email Series", emoji: "📧", angle: 42, color: "#34d399", delay: 96 },
-  { label: "Webinar Slide", emoji: "📊", angle: 85, color: "#fbbf24", delay: 108 },
+  {
+    label: "Social Thread",
+    emoji: "🧵",
+    angle: 0,
+    color: COLORS.cyan,
+    delay: 84,
+  },
+  {
+    label: "Email Series",
+    emoji: "📧",
+    angle: 42,
+    color: "#34d399",
+    delay: 96,
+  },
+  {
+    label: "Webinar Slide",
+    emoji: "📊",
+    angle: 85,
+    color: "#fbbf24",
+    delay: 108,
+  },
   { label: "PR Pitch", emoji: "📣", angle: 130, color: "#f472b6", delay: 120 },
-  { label: "Video Script", emoji: "🎥", angle: 175, color: "#60a5fa", delay: 132 },
-  { label: "Podcast Ep.", emoji: "🎙️", angle: -130, color: "#fb923c", delay: 144 },
+  {
+    label: "Video Script",
+    emoji: "🎥",
+    angle: 175,
+    color: "#60a5fa",
+    delay: 132,
+  },
+  {
+    label: "Podcast Ep.",
+    emoji: "🎙️",
+    angle: -130,
+    color: "#fb923c",
+    delay: 144,
+  },
 ];
 
 type DerivativeProps = {
@@ -57,7 +92,7 @@ const Derivative: React.FC<DerivativeProps> = ({
   });
 
   // Line from center
-  const lineLength = radius * progress * 0.65;
+  const lineLength = radius * progress * 0.6;
   const lx = Math.cos(rad) * lineLength;
   const ly = Math.sin(rad) * lineLength;
 
@@ -70,41 +105,32 @@ const Derivative: React.FC<DerivativeProps> = ({
         x2={lx}
         y2={ly}
         stroke={`${color}44`}
-        strokeWidth={1.5}
+        strokeWidth={2.5}
         opacity={opacity}
       />
 
       {/* Node */}
       <g transform={`translate(${x}, ${y})`} opacity={opacity}>
         <rect
-          x={-70}
-          y={-30}
-          width={140}
-          height={60}
-          rx={8}
+          x={-120}
+          y={-38}
+          width={240}
+          height={76}
+          rx={12}
           fill={`${color}20`}
           stroke={color}
-          strokeWidth={1.5}
+          strokeWidth={2}
         />
         <text
-          x={-55}
-          y={-4}
-          fill={color}
-          fontSize={18}
+          x={0}
+          y={10}
+          fill="#ffffffdd"
+          fontSize={26}
           fontFamily={fontFamily}
-          fontWeight={700}
+          fontWeight={500}
+          textAnchor="middle"
         >
-          {emoji}
-        </text>
-        <text
-          x={-30}
-          y={8}
-          fill="#ffffffcc"
-          fontSize={16}
-          fontFamily={fontFamily}
-          fontWeight={400}
-        >
-          {label}
+          {emoji} {label}
         </text>
       </g>
     </>
@@ -135,8 +161,8 @@ export const CapstoneAtomization: React.FC = () => {
   });
 
   const cx = 960;
-  const cy = 530;
-  const RADIUS = 300;
+  const cy = 540;
+  const RADIUS = 370;
 
   return (
     <AbsoluteFill
@@ -150,11 +176,11 @@ export const CapstoneAtomization: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 52,
+          top: 44,
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -167,7 +193,13 @@ export const CapstoneAtomization: React.FC = () => {
 
       {/* SVG for lines and nodes */}
       <svg
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
         viewBox="0 0 1920 1080"
       >
         <g transform={`translate(${cx}, ${cy})`}>
@@ -188,18 +220,18 @@ export const CapstoneAtomization: React.FC = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          width: 180,
-          height: 100,
+          width: 220,
+          height: 120,
           background: `linear-gradient(135deg, ${COLORS.orange}33, ${COLORS.orange}11)`,
           border: `3px solid ${COLORS.orange}`,
-          borderRadius: 12,
-          boxShadow: `0 0 ${centerScale * 40}px ${COLORS.orange}44`,
-          gap: 4,
+          borderRadius: 14,
+          boxShadow: `0 0 ${centerScale * 50}px ${COLORS.orange}44`,
+          gap: 6,
         }}
       >
         <div
           style={{
-            fontSize: 13,
+            fontSize: 22,
             fontWeight: 400,
             color: COLORS.orange,
             letterSpacing: "0.15em",
@@ -210,7 +242,7 @@ export const CapstoneAtomization: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 22,
+            fontSize: 28,
             fontWeight: 900,
             color: "#ffffff",
             textAlign: "center",
@@ -227,11 +259,11 @@ export const CapstoneAtomization: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          bottom: 52,
+          bottom: 44,
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 24,
+          fontSize: 32,
           fontWeight: 300,
           color: "#ffffffaa",
           opacity: bottomOpacity,

@@ -24,7 +24,8 @@ export const BezosQuote: React.FC = () => {
   });
 
   // Quote text builds word by word via character reveal
-  const quoteText = "Your brand is what people say about you when you're not in the room.";
+  const quoteText =
+    "Your brand is what people say about you\nwhen you're not in the room.";
   const totalChars = quoteText.length;
   const charsVisible = interpolate(frame, [20, 110], [0, totalChars], {
     extrapolateLeft: "clamp",
@@ -52,7 +53,7 @@ export const BezosQuote: React.FC = () => {
   });
 
   // Transition note fades in
-  const noteOpacity = interpolate(frame, [175, 210], [0, 1], {
+  const _noteOpacity = interpolate(frame, [175, 210], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -106,6 +107,7 @@ export const BezosQuote: React.FC = () => {
           lineHeight: 1.4,
           textAlign: "center",
           letterSpacing: "0.01em",
+          whiteSpace: "pre-wrap",
           position: "relative",
           zIndex: 1,
         }}
@@ -159,7 +161,7 @@ export const BezosQuote: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: 300,
             color: "#ffffff66",
             letterSpacing: "0.08em",
@@ -167,22 +169,6 @@ export const BezosQuote: React.FC = () => {
         >
           Founder, Amazon
         </div>
-      </div>
-
-      {/* Transition note */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 60,
-          fontSize: 22,
-          fontWeight: 400,
-          color: COLORS.cyan,
-          opacity: noteOpacity,
-          textAlign: "center",
-          letterSpacing: "0.04em",
-        }}
-      >
-        The room has changed.
       </div>
     </AbsoluteFill>
   );

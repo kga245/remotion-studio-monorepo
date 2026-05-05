@@ -4,7 +4,6 @@ import {
   interpolate,
   spring,
   useCurrentFrame,
-  useVideoConfig,
 } from "remotion";
 import { COLORS, fontFamily } from "../theme";
 
@@ -27,7 +26,6 @@ const BarrierCard: React.FC<BarrierCardProps> = ({
   color,
 }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
   const cardProgress = spring({
     frame: frame - startFrame,
@@ -90,7 +88,7 @@ const BarrierCard: React.FC<BarrierCardProps> = ({
       {/* Title */}
       <div
         style={{
-          fontSize: 32,
+          fontSize: 38,
           fontWeight: 900,
           color: "#ffffff",
           textTransform: "uppercase",
@@ -116,7 +114,7 @@ const BarrierCard: React.FC<BarrierCardProps> = ({
       {/* Question */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 28,
           fontWeight: 300,
           color: "#ffffffaa",
           textAlign: "center",
@@ -133,7 +131,6 @@ const BarrierCard: React.FC<BarrierCardProps> = ({
 
 export const ThreeBouncers: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
   const headerOpacity = interpolate(frame, [0, 20], [0, 1], {
     extrapolateRight: "clamp",
@@ -159,7 +156,7 @@ export const ThreeBouncers: React.FC = () => {
       {/* Header */}
       <div
         style={{
-          fontSize: 28,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",

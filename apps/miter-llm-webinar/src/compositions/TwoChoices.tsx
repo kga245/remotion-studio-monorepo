@@ -55,12 +55,6 @@ export const TwoChoices: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Choice A grays further out
-  const choiceAFade = interpolate(frame, [100, 150], [1, 0.25], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   // Bottom label
   const bottomOpacity = interpolate(frame, [165, 190], [0, 1], {
     extrapolateLeft: "clamp",
@@ -84,7 +78,7 @@ export const TwoChoices: React.FC = () => {
       {/* Header */}
       <div
         style={{
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -110,7 +104,7 @@ export const TwoChoices: React.FC = () => {
         <div
           style={{
             flex: 1,
-            opacity: choiceAOpacity * choiceAFade,
+            opacity: choiceAOpacity,
             transform: `translateX(${choiceAX}px)`,
             padding: "48px 40px",
             border: `1px solid ${COLORS.graphite}`,
@@ -118,12 +112,11 @@ export const TwoChoices: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             gap: 24,
-            filter: `grayscale(${interpolate(choiceAFade, [0.25, 1], [0.8, 0])}%)`,
           }}
         >
           <div
             style={{
-              fontSize: 14,
+              fontSize: 20,
               fontWeight: 400,
               color: COLORS.graphite,
               letterSpacing: "0.2em",
@@ -136,7 +129,7 @@ export const TwoChoices: React.FC = () => {
             style={{
               fontSize: 48,
               fontWeight: 900,
-              color: "#ffffff44",
+              color: "#ffffffbb",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
             }}
@@ -169,15 +162,15 @@ export const TwoChoices: React.FC = () => {
               <div
                 key={i}
                 style={{
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: 300,
-                  color: "#ffffff33",
+                  color: "#ffffff99",
                   display: "flex",
                   alignItems: "center",
                   gap: 10,
                 }}
               >
-                <span style={{ color: "#ffffff22" }}>—</span>
+                <span style={{ color: "#ffffff55" }}>—</span>
                 {item}
               </div>
             ))}
@@ -227,7 +220,7 @@ export const TwoChoices: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 14,
+              fontSize: 20,
               fontWeight: 400,
               color: COLORS.orange,
               letterSpacing: "0.2em",
@@ -273,7 +266,7 @@ export const TwoChoices: React.FC = () => {
               <div
                 key={i}
                 style={{
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: 400,
                   color: "#ffffffcc",
                   display: "flex",
@@ -292,7 +285,7 @@ export const TwoChoices: React.FC = () => {
       {/* Bottom */}
       <div
         style={{
-          fontSize: 28,
+          fontSize: 30,
           fontWeight: 700,
           color: COLORS.orange,
           opacity: bottomOpacity,

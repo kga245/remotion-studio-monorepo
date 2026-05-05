@@ -52,7 +52,7 @@ const CompanionStat: React.FC<CompanionStatProps> = ({
     >
       <div
         style={{
-          fontSize: 52,
+          fontSize: 76,
           fontWeight: 900,
           color,
           letterSpacing: "-0.03em",
@@ -63,7 +63,7 @@ const CompanionStat: React.FC<CompanionStatProps> = ({
       </div>
       <div
         style={{
-          fontSize: 16,
+          fontSize: 22,
           fontWeight: 400,
           color: "#ffffff66",
           letterSpacing: "0.08em",
@@ -117,7 +117,7 @@ export const Growth35: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px 120px",
+        padding: "60px 160px",
         gap: 0,
         overflow: "hidden",
       }}
@@ -127,7 +127,7 @@ export const Growth35: React.FC = () => {
         style={{
           position: "absolute",
           top: 60,
-          fontSize: 22,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",

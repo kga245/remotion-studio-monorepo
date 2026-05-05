@@ -84,7 +84,7 @@ export const LowesCase: React.FC = () => {
       {/* Header */}
       <div
         style={{
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -123,7 +123,7 @@ export const LowesCase: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 14,
+              fontSize: 20,
               fontWeight: 400,
               color: "#ffffff44",
               letterSpacing: "0.2em",
@@ -147,7 +147,7 @@ export const LowesCase: React.FC = () => {
           </div>
           <div
             style={{
-              fontSize: 22,
+              fontSize: 28,
               fontWeight: 300,
               color: "#ffffff44",
               lineHeight: 1.5,
@@ -192,7 +192,7 @@ export const LowesCase: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 14,
+              fontSize: 20,
               fontWeight: 400,
               color: COLORS.orange,
               letterSpacing: "0.2em",
@@ -216,7 +216,7 @@ export const LowesCase: React.FC = () => {
           </div>
           <div
             style={{
-              fontSize: 22,
+              fontSize: 28,
               fontWeight: 300,
               color: "#ffffffcc",
               lineHeight: 1.5,

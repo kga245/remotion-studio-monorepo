@@ -32,6 +32,101 @@ import { AuthorityTips } from "./compositions/AuthorityTips";
 import { ExtractabilityTips } from "./compositions/ExtractabilityTips";
 import { GoodMarketing } from "./compositions/GoodMarketing";
 import { TheSaysMITER } from "./compositions/TheSaysMITER";
+import { EmbeddingViz } from "./compositions/EmbeddingViz";
+import { FunnelCrumble } from "./compositions/FunnelCrumble";
+import { LockOut } from "./compositions/LockOut";
+import { ContentDivergence } from "./compositions/ContentDivergence";
+import { KnowledgeGap } from "./compositions/KnowledgeGap";
+import { InvisiblePath } from "./compositions/InvisiblePath";
+import { Welcome } from "./compositions/Welcome";
+import { Bridge } from "./compositions/Bridge";
+import { Outro } from "./compositions/Outro";
+import {
+  MilgardAudit as MilgardAuditCard,
+  PGTAudit as PGTAuditCard,
+  MIWindowsAudit as MIWindowsAuditCard,
+  AndersonWindowsAudit as AndersonWindowsAuditCard,
+} from "./compositions/AuditOverlay";
+import {
+  KellyAbbottLowerThird,
+  ThadKahlowLowerThird,
+  JohnBattistiniLowerThird,
+  EricDomeLowerThird,
+  CatfishComstockLowerThird,
+  SarahRockwoodLowerThird,
+  MiterSpeakerLowerThird,
+  GuestSpeakerLowerThird,
+} from "./compositions/LowerThird";
+import {
+  ActOpen,
+  Act1,
+  Act2,
+  Act3,
+  Act4,
+  Act5,
+  ActClose,
+} from "./compositions/NarrativeActCards";
+import {
+  Section01,
+  Section02,
+  Section03,
+  Section04,
+} from "./compositions/SectionDivider";
+import {
+  GEOLevelSettingIntro,
+  MiterAuditIntro,
+  WhatWeCanMeasureIntro,
+} from "./compositions/SectionIntroSlide";
+import {
+  PullQuote01,
+  PullQuote02,
+  PullQuote03,
+  PullQuote04,
+} from "./compositions/PullQuote";
+import {
+  PartTwoCard,
+  NextSessionTeaser,
+  GettingTechnicallyCreative,
+} from "./compositions/SessionCards";
+import {
+  KeyTakeaway01,
+  KeyTakeaway02,
+  KeyTakeaway03,
+} from "./compositions/KeyTakeaway";
+import { GEOStatement } from "./compositions/GEOStatement";
+import { LowesPhoneDemo } from "./compositions/LowesPhoneDemo";
+import {
+  LLMEvalRoadmap,
+  EvaluationQuestion,
+  PageVsPassage,
+} from "./compositions/PassageExplainer";
+import {
+  AttributionIntro,
+  AttributionMemoryPath,
+  AttributionArticlePath,
+} from "./compositions/AttributionPath";
+import { MiterGEOAudit } from "./compositions/GEOAuditIntro";
+import {
+  AuditSetup,
+  AuditByNumbers,
+  AuditPlatforms,
+  AuditDefinitions,
+} from "./compositions/AuditMethodology";
+import {
+  AIKnowsIntro,
+  AIKnows1947,
+  AIKnowsHistory,
+  AIKnowsMilgard,
+  AIKnowsEnergy,
+  AIKnowsDealer,
+  AIKnowsWarranty,
+  AIDefaulting,
+} from "./compositions/AIKnowledgeCards";
+import {
+  MilgardTopicTable,
+  PGTTopicTable,
+  MIWindowsTopicTable,
+} from "./compositions/GEOTopicTable";
 
 // Webinar: 22:32 = 1352s at 30fps
 // 45 segments, each ~30 seconds
@@ -309,7 +404,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="AreSomebody"
           component={AreSomebody}
-          durationInFrames={210}
+          durationInFrames={270}
           fps={30}
           width={1920}
           height={1080}
@@ -358,6 +453,591 @@ export const RemotionRoot: React.FC = () => {
           id="TheSaysMITER"
           component={TheSaysMITER}
           durationInFrames={210}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      {/* Batch 7 — New Motion Graphics */}
+      <Composition
+        id="EmbeddingViz"
+        component={EmbeddingViz}
+        durationInFrames={270}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="FunnelCrumble"
+        component={FunnelCrumble}
+        durationInFrames={270}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="LockOut"
+        component={LockOut}
+        durationInFrames={240}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="ContentDivergence"
+        component={ContentDivergence}
+        durationInFrames={270}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="KnowledgeGap"
+        component={KnowledgeGap}
+        durationInFrames={270}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="InvisiblePath"
+        component={InvisiblePath}
+        durationInFrames={270}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* ─── Migrated from title-cards project ─── */}
+
+      <Folder name="Title-Cards">
+        <Composition
+          id="Welcome"
+          component={Welcome}
+          durationInFrames={282}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Bridge"
+          component={Bridge}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Outro"
+          component={Outro}
+          durationInFrames={25 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="GEO-Audit-Cards">
+        <Composition
+          id="AndersonWindowsAuditCard"
+          component={AndersonWindowsAuditCard}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MilgardAuditCard"
+          component={MilgardAuditCard}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PGTAuditCard"
+          component={PGTAuditCard}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MIWindowsAuditCard"
+          component={MIWindowsAuditCard}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="Lower-Thirds">
+        <Composition
+          id="KellyAbbottLowerThird"
+          component={KellyAbbottLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="ThadKahlowLowerThird"
+          component={ThadKahlowLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="JohnBattistiniLowerThird"
+          component={JohnBattistiniLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="EricDomeLowerThird"
+          component={EricDomeLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="CatfishComstockLowerThird"
+          component={CatfishComstockLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="SarahRockwoodLowerThird"
+          component={SarahRockwoodLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MiterSpeakerLowerThird"
+          component={MiterSpeakerLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="GuestSpeakerLowerThird"
+          component={GuestSpeakerLowerThird}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="Narrative-Acts">
+        <Composition
+          id="ActOpen"
+          component={ActOpen}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Act1"
+          component={Act1}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Act2"
+          component={Act2}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Act3"
+          component={Act3}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Act4"
+          component={Act4}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Act5"
+          component={Act5}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="ActClose"
+          component={ActClose}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="Section-Dividers">
+        <Composition
+          id="Section01"
+          component={Section01}
+          durationInFrames={5 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Section02"
+          component={Section02}
+          durationInFrames={5 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Section03"
+          component={Section03}
+          durationInFrames={5 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="Section04"
+          component={Section04}
+          durationInFrames={5 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="Section-Intros">
+        <Composition
+          id="GEOLevelSettingIntro"
+          component={GEOLevelSettingIntro}
+          durationInFrames={18 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MiterAuditIntro"
+          component={MiterAuditIntro}
+          durationInFrames={18 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="WhatWeCanMeasureIntro"
+          component={WhatWeCanMeasureIntro}
+          durationInFrames={18 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="Pull-Quotes">
+        <Composition
+          id="PullQuote01"
+          component={PullQuote01}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PullQuote02"
+          component={PullQuote02}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PullQuote03"
+          component={PullQuote03}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PullQuote04"
+          component={PullQuote04}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PartTwoCard"
+          component={PartTwoCard}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="NextSessionTeaser"
+          component={NextSessionTeaser}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="GettingTechnicallyCreative"
+          component={GettingTechnicallyCreative}
+          durationInFrames={5 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+      </Folder>
+
+      <Folder name="Key-Takeaways">
+        <Composition
+          id="KeyTakeaway01"
+          component={KeyTakeaway01}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="KeyTakeaway02"
+          component={KeyTakeaway02}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="KeyTakeaway03"
+          component={KeyTakeaway03}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="GEOStatement"
+          component={GEOStatement}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="LowesPhoneDemo"
+          component={LowesPhoneDemo}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="LLMEvalRoadmap"
+          component={LLMEvalRoadmap}
+          durationInFrames={16 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="EvaluationQuestion"
+          component={EvaluationQuestion}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PageVsPassage"
+          component={PageVsPassage}
+          durationInFrames={14 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AttributionIntro"
+          component={AttributionIntro}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AttributionMemoryPath"
+          component={AttributionMemoryPath}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AttributionArticlePath"
+          component={AttributionArticlePath}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MiterGEOAudit"
+          component={MiterGEOAudit}
+          durationInFrames={12 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AuditSetup"
+          component={AuditSetup}
+          durationInFrames={6 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AuditByNumbers"
+          component={AuditByNumbers}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AuditPlatforms"
+          component={AuditPlatforms}
+          durationInFrames={8 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="AuditDefinitions"
+          component={AuditDefinitions}
+          durationInFrames={10 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Folder name="AI-Knowledge-Cards">
+          <Composition
+            id="AIKnowsIntro"
+            component={AIKnowsIntro}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIKnows1947"
+            component={AIKnows1947}
+            durationInFrames={75}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIKnowsHistory"
+            component={AIKnowsHistory}
+            durationInFrames={75}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIKnowsMilgard"
+            component={AIKnowsMilgard}
+            durationInFrames={75}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIKnowsEnergy"
+            component={AIKnowsEnergy}
+            durationInFrames={75}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIKnowsDealer"
+            component={AIKnowsDealer}
+            durationInFrames={75}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIKnowsWarranty"
+            component={AIKnowsWarranty}
+            durationInFrames={75}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+          <Composition
+            id="AIDefaulting"
+            component={AIDefaulting}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+          />
+        </Folder>
+      </Folder>
+
+      <Folder name="GEO-Topic-Tables">
+        <Composition
+          id="MilgardTopicTable"
+          component={MilgardTopicTable}
+          durationInFrames={20 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="PGTTopicTable"
+          component={PGTTopicTable}
+          durationInFrames={20 * 30}
+          fps={30}
+          width={1920}
+          height={1080}
+        />
+        <Composition
+          id="MIWindowsTopicTable"
+          component={MIWindowsTopicTable}
+          durationInFrames={20 * 30}
           fps={30}
           width={1920}
           height={1080}

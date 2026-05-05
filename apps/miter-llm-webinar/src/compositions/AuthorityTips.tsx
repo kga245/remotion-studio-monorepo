@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -14,38 +13,32 @@ import { COLORS, fontFamily } from "../theme";
 const TIPS = [
   {
     number: "01",
-    title: "Build a Wikipedia presence.",
-    detail: "Wikipedia is a primary training source for every major LLM.",
+    title: "Cite your sources.",
     delay: 30,
   },
   {
     number: "02",
-    title: "Earn earned media coverage.",
-    detail: "Press mentions from credible news sources dramatically increase authority scores.",
+    title: "Publish original data.",
     delay: 72,
   },
   {
     number: "03",
-    title: "Get cited by industry publications.",
-    detail: "Trade press, association sites, and analyst reports are high-authority citation sources.",
+    title: "Put a real name behind your content.",
     delay: 114,
   },
   {
     number: "04",
-    title: "Build author authority.",
-    detail: "Named authors with credentials and Google Scholar profiles increase content trust.",
+    title: "Earn references from other sites.",
     delay: 156,
   },
   {
     number: "05",
-    title: "Accumulate reviews on trusted platforms.",
-    detail: "Houzz, Consumer Reports, and similar third-party review platforms signal legitimacy.",
+    title: "Build something useful.",
     delay: 198,
   },
   {
     number: "06",
-    title: "Pursue awards and certifications.",
-    detail: "Industry recognition provides structured authority signals that LLMs can parse.",
+    title: "Date everything. Keep it fresh.",
     delay: 240,
   },
 ];
@@ -84,7 +77,7 @@ export const AuthorityTips: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 18,
+            fontSize: 44,
             fontWeight: 400,
             color: COLORS.cyan,
             letterSpacing: "0.2em",
@@ -109,7 +102,7 @@ export const AuthorityTips: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 22,
+            fontSize: 30,
             fontWeight: 300,
             color: "#ffffff66",
           }}
@@ -118,16 +111,16 @@ export const AuthorityTips: React.FC = () => {
         </div>
       </div>
 
-      {/* Tips — 2 column layout for 6 tips */}
+      {/* Tips — single column */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "20px 48px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
           width: "100%",
         }}
       >
-        {TIPS.map(({ number, title, detail, delay }) => {
+        {TIPS.map(({ number, title, delay }) => {
           const progress = spring({
             frame: frame - delay,
             fps,
@@ -138,18 +131,18 @@ export const AuthorityTips: React.FC = () => {
           const opacity = interpolate(progress, [0, 0.3], [0, 1], {
             extrapolateRight: "clamp",
           });
-          const y = interpolate(progress, [0, 1], [30, 0]);
+          const x = interpolate(progress, [0, 1], [-50, 0]);
 
           return (
             <div
               key={number}
               style={{
                 opacity,
-                transform: `translateY(${y}px)`,
+                transform: `translateX(${x}px)`,
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
-                gap: 16,
+                gap: 20,
               }}
             >
               <div
@@ -169,32 +162,19 @@ export const AuthorityTips: React.FC = () => {
 
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 4,
-                  borderLeft: `2px solid ${COLORS.cyan}`,
-                  paddingLeft: 16,
+                  borderLeft: `3px solid ${COLORS.cyan}`,
+                  paddingLeft: 20,
                 }}
               >
                 <div
                   style={{
-                    fontSize: 22,
+                    fontSize: 28,
                     fontWeight: 700,
                     color: "#ffffff",
                     lineHeight: 1.2,
                   }}
                 >
                   {title}
-                </div>
-                <div
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 300,
-                    color: "#ffffff66",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {detail}
                 </div>
               </div>
             </div>

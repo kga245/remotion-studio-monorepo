@@ -108,7 +108,7 @@ export const CosineSimilarity: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -120,7 +120,13 @@ export const CosineSimilarity: React.FC = () => {
       </div>
 
       <svg
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
         viewBox="0 0 1920 1080"
       >
         {/* Grid dots */}
@@ -214,7 +220,7 @@ export const CosineSimilarity: React.FC = () => {
               x={cx + 80}
               y={cy + 30}
               fill="#ffffff88"
-              fontSize={20}
+              fontSize={24}
               fontFamily={fontFamily}
               opacity={angleOpacity}
             >
@@ -224,7 +230,13 @@ export const CosineSimilarity: React.FC = () => {
         )}
 
         {/* Origin dot */}
-        <circle cx={cx} cy={cy} r={8} fill={`${COLORS.graphite}`} opacity={axesProgress} />
+        <circle
+          cx={cx}
+          cy={cy}
+          r={8}
+          fill={`${COLORS.graphite}`}
+          opacity={axesProgress}
+        />
       </svg>
 
       {/* Word origin label */}
@@ -233,7 +245,7 @@ export const CosineSimilarity: React.FC = () => {
           position: "absolute",
           left: cx - 110,
           top: cy + 18,
-          fontSize: 22,
+          fontSize: 26,
           fontWeight: 700,
           color: "#ffffff88",
           opacity: wordOpacity,
@@ -265,16 +277,14 @@ export const CosineSimilarity: React.FC = () => {
         <div style={{ fontSize: 28, lineHeight: 1 }}>🇹🇷</div>
         <div
           style={{
-            fontSize: 22,
+            fontSize: 26,
             fontWeight: 700,
             color: COLORS.orange,
           }}
         >
           Turkey (Country)
         </div>
-        <div
-          style={{ fontSize: 16, fontWeight: 300, color: "#ffffff88" }}
-        >
+        <div style={{ fontSize: 22, fontWeight: 300, color: "#ffffff88" }}>
           Ankara · Bosphorus · Lira
         </div>
       </div>
@@ -298,16 +308,14 @@ export const CosineSimilarity: React.FC = () => {
         <div style={{ fontSize: 28, lineHeight: 1 }}>🦃</div>
         <div
           style={{
-            fontSize: 22,
+            fontSize: 26,
             fontWeight: 700,
             color: COLORS.cyan,
           }}
         >
           Turkey (Bird)
         </div>
-        <div
-          style={{ fontSize: 16, fontWeight: 300, color: "#ffffff88" }}
-        >
+        <div style={{ fontSize: 22, fontWeight: 300, color: "#ffffff88" }}>
           Thanksgiving · Feathers · Farm
         </div>
       </div>
@@ -320,13 +328,14 @@ export const CosineSimilarity: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 30,
           fontWeight: 300,
           color: "#ffffffaa",
           opacity: insightOpacity,
         }}
       >
-        Same word, completely different vector neighborhoods — context determines meaning.
+        Same word, completely different vector neighborhoods — context
+        determines meaning.
       </div>
     </AbsoluteFill>
   );

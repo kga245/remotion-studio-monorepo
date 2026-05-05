@@ -187,7 +187,7 @@ export const TheSaysMITER: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 28,
+            fontSize: 32,
             fontWeight: 400,
             color: "#ffffffaa",
             opacity: contextOpacity,
@@ -199,7 +199,7 @@ export const TheSaysMITER: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 24,
+            fontSize: 30,
             fontWeight: 300,
             color: COLORS.cyan,
             opacity: context2Opacity,

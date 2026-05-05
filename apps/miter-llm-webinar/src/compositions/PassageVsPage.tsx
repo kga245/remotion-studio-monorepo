@@ -101,7 +101,7 @@ export const PassageVsPage: React.FC = () => {
         style={{
           position: "absolute",
           top: 52,
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -151,12 +151,11 @@ export const PassageVsPage: React.FC = () => {
                   lineHeight: "22px",
                   color: isHighlight ? "#ffffff" : "#ffffff66",
                   filter: !isHighlight ? `blur(${blurAmount * 0.5}px)` : "none",
-                  background:
-                    isHighlight
-                      ? `${COLORS.cyan}${Math.round(highlightOpacity * 28)
-                          .toString(16)
-                          .padStart(2, "0")}`
-                      : "transparent",
+                  background: isHighlight
+                    ? `${COLORS.cyan}${Math.round(highlightOpacity * 28)
+                        .toString(16)
+                        .padStart(2, "0")}`
+                    : "transparent",
                   padding: isHighlight ? "1px 4px" : "1px 4px",
                   borderRadius: 2,
                   transition: "none",

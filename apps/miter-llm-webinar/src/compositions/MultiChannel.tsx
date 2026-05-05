@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -28,7 +27,13 @@ type SpokeProps = {
   radius: number;
 };
 
-const Spoke: React.FC<SpokeProps> = ({ label, color, angle, delay, radius }) => {
+const Spoke: React.FC<SpokeProps> = ({
+  label,
+  color,
+  angle,
+  delay,
+  radius,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -80,8 +85,8 @@ const Spoke: React.FC<SpokeProps> = ({ label, color, angle, delay, radius }) => 
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          width: 110,
-          height: 110,
+          width: 130,
+          height: 130,
           borderRadius: "50%",
           border: `2px solid ${color}`,
           background: `${color}15`,
@@ -90,7 +95,7 @@ const Spoke: React.FC<SpokeProps> = ({ label, color, angle, delay, radius }) => 
       >
         <div
           style={{
-            fontSize: 20,
+            fontSize: 26,
             fontWeight: 700,
             color,
             letterSpacing: "0.05em",
@@ -128,12 +133,10 @@ export const MultiChannel: React.FC = () => {
   });
 
   // Hub glow pulse
-  const hubGlow = interpolate(
-    frame,
-    [35, 70, 105, 140],
-    [0, 1, 0.5, 0.8],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-  );
+  const hubGlow = interpolate(frame, [35, 70, 105, 140], [0, 1, 0.5, 0.8], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   const RADIUS = 280;
   const angleStep = 360 / CHANNELS.length;
@@ -154,7 +157,7 @@ export const MultiChannel: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -218,7 +221,7 @@ export const MultiChannel: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 32,
           fontWeight: 300,
           color: "#ffffffaa",
           opacity: bottomOpacity,

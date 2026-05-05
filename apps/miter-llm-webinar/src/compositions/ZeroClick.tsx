@@ -63,12 +63,6 @@ export const ZeroClick: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Bottom stat line
-  const statOpacity = interpolate(frame, [130, 160], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   return (
     <AbsoluteFill
       style={{
@@ -130,7 +124,9 @@ export const ZeroClick: React.FC = () => {
               width: 600 + glowSize * 2,
               height: 280 + glowSize,
               borderRadius: "50%",
-              background: `radial-gradient(ellipse, ${COLORS.orange}${Math.round(glowPulse * 50)
+              background: `radial-gradient(ellipse, ${COLORS.orange}${Math.round(
+                glowPulse * 50,
+              )
                 .toString(16)
                 .padStart(2, "0")}, transparent 70%)`,
               filter: "blur(40px)",
@@ -168,23 +164,6 @@ export const ZeroClick: React.FC = () => {
         >
           clicks.
         </div>
-      </div>
-
-      {/* Bottom context stat */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 60,
-          opacity: statOpacity,
-          fontSize: 22,
-          fontWeight: 400,
-          color: COLORS.graphite,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          textAlign: "center",
-        }}
-      >
-        The user got their answer. Your brand wasn't part of it.
       </div>
     </AbsoluteFill>
   );

@@ -113,7 +113,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
           background: `${platformColor}22`,
           border: `1px solid ${platformColor}`,
           borderRadius: 6,
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 700,
           color: platformColor,
           textAlign: "center",
@@ -127,7 +127,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
       <div
         style={{
           width: 280,
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 300,
           color: "#ffffff88",
           flexShrink: 0,
@@ -185,7 +185,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 20,
+          fontSize: 24,
           fontWeight: 900,
           color: gradeColor,
           flexShrink: 0,
@@ -238,7 +238,7 @@ export const MilgardAudit: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 22,
+            fontSize: 44,
             fontWeight: 400,
             color: COLORS.orange,
             letterSpacing: "0.2em",
@@ -259,7 +259,7 @@ export const MilgardAudit: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 18,
+            fontSize: 22,
             fontWeight: 300,
             color: "#ffffff44",
             marginLeft: "auto",
@@ -287,7 +287,7 @@ export const MilgardAudit: React.FC = () => {
       {/* Bottom takeaway */}
       <div
         style={{
-          fontSize: 24,
+          fontSize: 28,
           fontWeight: 400,
           color: COLORS.cyan,
           opacity: bottomOpacity,
@@ -298,7 +298,7 @@ export const MilgardAudit: React.FC = () => {
       >
         Strong brand awareness, but citation rates lag behind mention rates.
         <br />
-        <span style={{ fontWeight: 300, color: "#ffffff88", fontSize: 20 }}>
+        <span style={{ fontWeight: 300, color: "#ffffff88", fontSize: 24 }}>
           Opportunity: increase extractable, cited content.
         </span>
       </div>

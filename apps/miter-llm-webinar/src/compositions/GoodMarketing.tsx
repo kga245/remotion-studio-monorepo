@@ -79,7 +79,11 @@ export const GoodMarketing: React.FC = () => {
       {/* Background radial */}
       <AbsoluteFill
         style={{
-          background: `radial-gradient(ellipse at center, ${COLORS.orange}${Math.round(glow * 8).toString(16).padStart(2, "0")}, transparent 60%)`,
+          background: `radial-gradient(ellipse at center, ${COLORS.orange}${Math.round(
+            glow * 8,
+          )
+            .toString(16)
+            .padStart(2, "0")}, transparent 60%)`,
           pointerEvents: "none",
         }}
       />
@@ -155,7 +159,7 @@ export const GoodMarketing: React.FC = () => {
               gap: 16,
             }}
           >
-            <span style={{ color: COLORS.orange, fontSize: 20 }}>●</span>
+            <span style={{ color: COLORS.orange, fontSize: 24 }}>●</span>
             {text}
           </div>
         ))}

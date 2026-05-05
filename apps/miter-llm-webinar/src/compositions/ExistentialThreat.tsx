@@ -1,12 +1,11 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { COLORS, fontFamily } from "../theme";
+import { fontFamily } from "../theme";
 
 // 6 seconds = 180 frames
 // "Boardroom level attention." Red/warning treatment.
@@ -39,26 +38,6 @@ export const ExistentialThreat: React.FC = () => {
     durationInFrames: 35,
   });
   const headlineOpacity = interpolate(frame, [30, 45], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Sub-points build
-  const sub1Opacity = interpolate(frame, [70, 95], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const sub2Opacity = interpolate(frame, [90, 115], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const sub3Opacity = interpolate(frame, [110, 135], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Bottom call to action
-  const ctaOpacity = interpolate(frame, [145, 170], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -106,7 +85,7 @@ export const ExistentialThreat: React.FC = () => {
           background: "#ef4444",
           borderRadius: 4,
           padding: "8px 24px",
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 900,
           color: "#ffffff",
           letterSpacing: "0.3em",
@@ -158,51 +137,6 @@ export const ExistentialThreat: React.FC = () => {
         >
           level attention.
         </div>
-      </div>
-
-      {/* Sub-points */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 16,
-          width: "100%",
-          maxWidth: 800,
-        }}
-      >
-        {[
-          { text: "Search behavior is fundamentally restructuring.", opacity: sub1Opacity },
-          { text: "AI visibility will outpace SEO within 18 months.", opacity: sub2Opacity },
-          { text: "First movers will compound advantage. Laggards compound debt.", opacity: sub3Opacity },
-        ].map(({ text, opacity }) => (
-          <div
-            key={text}
-            style={{
-              opacity,
-              fontSize: 26,
-              fontWeight: 400,
-              color: "#ffffff99",
-              textAlign: "center",
-              borderBottom: `1px solid #ef444433`,
-              paddingBottom: 16,
-            }}
-          >
-            {text}
-          </div>
-        ))}
-      </div>
-
-      {/* CTA */}
-      <div
-        style={{
-          opacity: ctaOpacity,
-          fontSize: 32,
-          fontWeight: 700,
-          color: COLORS.orange,
-          textAlign: "center",
-        }}
-      >
-        The window to act is now.
       </div>
     </AbsoluteFill>
   );

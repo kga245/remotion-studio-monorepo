@@ -13,6 +13,9 @@ export const COLORS = {
   teal: "#7BEDF8",
   dark: "#07070f",
   graphite: "#353D50",
+  gray: "#8B8586",
+  white: "#FFFFFF",
+  black: "#000000",
 } as const;
 
 export const brand: BrandConfig = {

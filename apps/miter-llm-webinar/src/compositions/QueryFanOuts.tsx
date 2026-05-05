@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -9,89 +8,108 @@ import {
 import { COLORS, fontFamily } from "../theme";
 
 // 8 seconds = 240 frames
-// One query branches into sub-queries — tree/neural visual
+// One query springs apart into sub-queries — radial burst from center
 
+// Offsets from center (dx, dy) — hand-placed to fill the 1920×1080 canvas
+// with safe margins for header (top ~100px) and footer (bottom ~100px)
 const SUB_QUERIES = [
-  { text: "What are the best window brands for cold climates?", delay: 60, angle: -55 },
-  { text: "How do U-factor ratings compare by brand?", delay: 75, angle: -30 },
-  { text: "Milgard vs Andersen energy efficiency 2024", delay: 90, angle: -5 },
-  { text: "Are vinyl or fiberglass windows better insulated?", delay: 105, angle: 22 },
-  { text: "Window replacement cost vs energy savings ROI", delay: 120, angle: 48 },
+  { text: "Best window brands\nfor cold climates?", dx: -620, dy: -220 },
+  { text: "U-factor ratings\ncompared by brand?", dx: 580, dy: -250 },
+  { text: "Milgard vs Andersen\nenergy efficiency", dx: -560, dy: 250 },
+  { text: "Vinyl or fiberglass —\nwhich insulates better?", dx: 620, dy: 220 },
+  { text: "Replacement cost vs\nenergy savings ROI", dx: 0, dy: 340 },
 ];
 
-type BranchProps = {
+const CX = 960;
+const CY = 440;
+
+type NodeProps = {
   text: string;
-  angle: number;
+  dx: number;
+  dy: number;
   delay: number;
-  length: number;
 };
 
-const Branch: React.FC<BranchProps> = ({ text, angle, delay, length }) => {
+const SpringNode: React.FC<NodeProps> = ({ text, dx, dy, delay }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const progress = spring({
+  // Spring that overshoots — feels like it pops out
+  const pop = spring({
     frame: frame - delay,
     fps,
-    config: { damping: 20, stiffness: 140 },
-    durationInFrames: 40,
+    config: { damping: 11, stiffness: 120, mass: 0.8 },
+    durationInFrames: 50,
   });
 
-  const lineLength = interpolate(progress, [0, 0.7], [0, length], {
+  const opacity = interpolate(pop, [0, 0.3], [0, 1], {
     extrapolateRight: "clamp",
-    easing: Easing.out(Easing.quad),
   });
-  const textOpacity = interpolate(progress, [0.5, 1], [0, 1], {
+
+  const tx = dx * pop;
+  const ty = dy * pop;
+  const scale = interpolate(pop, [0, 0.4, 0.7, 1], [0.3, 1.15, 0.95, 1], {
+    extrapolateRight: "clamp",
+  });
+
+  // Glow pulse after landing
+  const glowOpacity = interpolate(pop, [0.6, 0.8, 1], [0, 0.6, 0.25], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const rad = (angle * Math.PI) / 180;
-  const endX = Math.cos(rad) * length;
-  const endY = Math.sin(rad) * length;
+  const lines = text.split("\n");
 
   return (
-    <g>
-      {/* Branch line drawn progressively */}
-      <line
-        x1={0}
-        y1={0}
-        x2={(Math.cos(rad) * lineLength)}
-        y2={(Math.sin(rad) * lineLength)}
-        stroke={`${COLORS.cyan}88`}
-        strokeWidth={1.5}
+    <div
+      style={{
+        position: "absolute",
+        left: CX + tx,
+        top: CY + ty,
+        transform: `translate(-50%, -50%) scale(${scale})`,
+        opacity,
+      }}
+    >
+      {/* Glow ring */}
+      <div
+        style={{
+          position: "absolute",
+          inset: -14,
+          borderRadius: 28,
+          background: `radial-gradient(ellipse, ${COLORS.cyan}44 0%, transparent 70%)`,
+          opacity: glowOpacity,
+          pointerEvents: "none",
+        }}
       />
 
-      {/* Node dot */}
-      <circle
-        cx={endX}
-        cy={endY}
-        r={5}
-        fill={COLORS.cyan}
-        opacity={textOpacity}
-      />
-
-      {/* Sub-query text */}
-      <foreignObject
-        x={endX + (angle < 0 ? 14 : 14)}
-        y={endY - 18}
-        width={380}
-        height={44}
-        opacity={textOpacity}
+      {/* Pill */}
+      <div
+        style={{
+          background: `linear-gradient(135deg, ${COLORS.cyan}22, ${COLORS.cyan}10)`,
+          border: `2px solid ${COLORS.cyan}66`,
+          borderRadius: 20,
+          padding: "16px 28px",
+          backdropFilter: "blur(4px)",
+        }}
       >
-        <div
-          style={{
-            fontFamily,
-            fontSize: 17,
-            fontWeight: 400,
-            color: "#ffffffcc",
-            lineHeight: 1.3,
-          }}
-        >
-          {text}
-        </div>
-      </foreignObject>
-    </g>
+        {lines.map((line, i) => (
+          <div
+            key={i}
+            style={{
+              fontFamily,
+              fontSize: 28,
+              fontWeight: 400,
+              color: "#ffffffdd",
+              lineHeight: 1.35,
+              textAlign: "center",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {line}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
@@ -99,12 +117,12 @@ export const QueryFanOuts: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Root query appears
-  const rootScale = spring({
+  // Root query pill scale
+  const rootPop = spring({
     frame,
     fps,
-    config: { damping: 18, stiffness: 200 },
-    durationInFrames: 30,
+    config: { damping: 12, stiffness: 160, mass: 0.7 },
+    durationInFrames: 35,
   });
 
   // Header
@@ -112,11 +130,24 @@ export const QueryFanOuts: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Trunk line
-  const trunkLength = interpolate(frame, [25, 55], [0, 80], {
+  // Root pill "cracks open" — shrinks slightly as nodes fly out
+  const rootShrink = interpolate(frame, [55, 80], [1, 0.88], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
-    easing: Easing.out(Easing.quad),
+  });
+
+  // Ring burst at moment of fan-out
+  const burstProgress = spring({
+    frame: frame - 55,
+    fps,
+    config: { damping: 20, stiffness: 100 },
+    durationInFrames: 40,
+  });
+  const burstScale = interpolate(burstProgress, [0, 1], [0.5, 3.5], {
+    extrapolateRight: "clamp",
+  });
+  const burstOpacity = interpolate(burstProgress, [0, 0.3, 1], [0, 0.5, 0], {
+    extrapolateRight: "clamp",
   });
 
   // Bottom label
@@ -125,9 +156,8 @@ export const QueryFanOuts: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  const BRANCH_LENGTH = 340;
-  const centerX = 420;
-  const centerY = 540;
+  // Staggered delays for each node
+  const delays = [60, 66, 72, 78, 84];
 
   return (
     <AbsoluteFill
@@ -141,11 +171,11 @@ export const QueryFanOuts: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 52,
+          top: 40,
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -156,68 +186,58 @@ export const QueryFanOuts: React.FC = () => {
         Query Fan-Out
       </div>
 
-      {/* SVG for lines */}
-      <svg
-        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-        viewBox="0 0 1920 1080"
-      >
-        {/* Trunk */}
-        <line
-          x1={centerX}
-          y1={centerY}
-          x2={centerX + trunkLength}
-          y2={centerY}
-          stroke={`${COLORS.orange}88`}
-          strokeWidth={2}
-        />
-
-        {/* Fork point dot */}
-        <circle
-          cx={centerX + trunkLength}
-          cy={centerY}
-          r={6}
-          fill={COLORS.orange}
-          opacity={trunkLength > 60 ? 1 : 0}
-        />
-
-        {/* Branches */}
-        <g transform={`translate(${centerX + trunkLength}, ${centerY})`}>
-          {SUB_QUERIES.map((q) => (
-            <Branch
-              key={q.text}
-              text={q.text}
-              angle={q.angle}
-              delay={q.delay}
-              length={BRANCH_LENGTH}
-            />
-          ))}
-        </g>
-      </svg>
-
-      {/* Root query pill */}
+      {/* Burst ring */}
       <div
         style={{
           position: "absolute",
-          left: 60,
-          top: centerY - 36,
-          transform: `scale(${rootScale})`,
-          transformOrigin: "left center",
+          left: CX,
+          top: CY,
+          width: 200,
+          height: 200,
+          transform: `translate(-50%, -50%) scale(${burstScale})`,
+          borderRadius: "50%",
+          border: `2px solid ${COLORS.orange}`,
+          opacity: burstOpacity,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Sub-query nodes — spring outward */}
+      {SUB_QUERIES.map((q, i) => (
+        <SpringNode
+          key={i}
+          text={q.text}
+          dx={q.dx}
+          dy={q.dy}
+          delay={delays[i]}
+        />
+      ))}
+
+      {/* Root query pill — centered */}
+      <div
+        style={{
+          position: "absolute",
+          left: CX,
+          top: CY,
+          transform: `translate(-50%, -50%) scale(${rootPop * rootShrink})`,
           background: COLORS.orange,
-          borderRadius: 40,
-          padding: "16px 32px",
-          maxWidth: 340,
+          borderRadius: 50,
+          padding: "22px 48px",
+          boxShadow: `0 0 60px ${COLORS.orange}44`,
+          zIndex: 10,
         }}
       >
         <div
           style={{
-            fontSize: 18,
+            fontSize: 30,
             fontWeight: 700,
             color: "#ffffff",
             lineHeight: 1.3,
             textAlign: "center",
+            whiteSpace: "nowrap",
           }}
         >
-          "What's the best window treatment for a bedroom?"
+          "Best window treatment for a bedroom?"
         </div>
       </div>
 
@@ -225,11 +245,11 @@ export const QueryFanOuts: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          bottom: 52,
+          bottom: 44,
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 24,
+          fontSize: 32,
           fontWeight: 300,
           color: "#ffffffaa",
           opacity: bottomOpacity,

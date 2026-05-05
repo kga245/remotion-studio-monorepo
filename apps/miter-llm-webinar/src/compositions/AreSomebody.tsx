@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -14,21 +13,23 @@ import { COLORS, fontFamily } from "../theme";
 const QUESTIONS = [
   {
     q: "Are you actually somebody?",
-    sub: "Does your brand exist with authority in your category?",
     delay: 10,
     color: COLORS.orange,
   },
   {
     q: "Have you done something worth talking about?",
-    sub: "Do you have published proof — content, case studies, recognition?",
     delay: 65,
     color: COLORS.cyan,
   },
   {
     q: "Do other important people vouch for you?",
-    sub: "Are you cited by journalists, experts, Wikipedia, industry sources?",
     delay: 120,
     color: "#a78bfa",
+  },
+  {
+    q: "Does your brand have genuine authority?",
+    delay: 175,
+    color: COLORS.orange,
   },
 ];
 
@@ -39,7 +40,7 @@ export const AreSomebody: React.FC = () => {
   const headerOpacity = interpolate(frame, [0, 20], [0, 1], {
     extrapolateRight: "clamp",
   });
-  const bottomOpacity = interpolate(frame, [168, 195], [0, 1], {
+  const bottomOpacity = interpolate(frame, [220, 245], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -61,7 +62,7 @@ export const AreSomebody: React.FC = () => {
       {/* Header */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -81,7 +82,7 @@ export const AreSomebody: React.FC = () => {
           width: "100%",
         }}
       >
-        {QUESTIONS.map(({ q, sub, delay, color }, i) => {
+        {QUESTIONS.map(({ q, delay, color }, i) => {
           const progress = spring({
             frame: frame - delay,
             fps,
@@ -93,13 +94,6 @@ export const AreSomebody: React.FC = () => {
             extrapolateRight: "clamp",
           });
           const x = interpolate(progress, [0, 1], [-80, 0]);
-
-          const subOpacity = interpolate(
-            frame,
-            [delay + 25, delay + 50],
-            [0, 1],
-            { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-          );
 
           return (
             <div
@@ -131,9 +125,6 @@ export const AreSomebody: React.FC = () => {
               {/* Text block */}
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
                   borderLeft: `3px solid ${color}`,
                   paddingLeft: 24,
                 }}
@@ -149,17 +140,6 @@ export const AreSomebody: React.FC = () => {
                 >
                   {q}
                 </div>
-                <div
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 300,
-                    color: "#ffffff77",
-                    lineHeight: 1.4,
-                    opacity: subOpacity,
-                  }}
-                >
-                  {sub}
-                </div>
               </div>
             </div>
           );
@@ -169,7 +149,7 @@ export const AreSomebody: React.FC = () => {
       {/* Bottom */}
       <div
         style={{
-          fontSize: 26,
+          fontSize: 30,
           fontWeight: 400,
           color: COLORS.orange,
           opacity: bottomOpacity,

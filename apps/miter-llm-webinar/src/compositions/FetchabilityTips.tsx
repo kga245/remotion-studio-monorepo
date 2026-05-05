@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -14,20 +13,17 @@ import { COLORS, fontFamily } from "../theme";
 const TIPS = [
   {
     number: "01",
-    title: "Make it crawlable.",
-    detail: "Clean HTML structure, no JavaScript-only rendering of key content. LLM crawlers are text-first.",
+    title: "Let AI crawlers in.",
     delay: 30,
   },
   {
     number: "02",
-    title: "Get indexed everywhere.",
-    detail: "Submit to Bing, Google, and lesser-known indices. LLMs pull from a broader web than Google search.",
+    title: "Don't make crawlers wait.",
     delay: 90,
   },
   {
     number: "03",
-    title: "Earn links from authority sources.",
-    detail: "Citations from Wikipedia, news, and industry publications signal you're worth finding.",
+    title: "If it's not in the HTML, it doesn't exist.",
     delay: 155,
   },
 ];
@@ -70,7 +66,7 @@ export const FetchabilityTips: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 18,
+            fontSize: 44,
             fontWeight: 400,
             color: COLORS.orange,
             letterSpacing: "0.2em",
@@ -95,7 +91,7 @@ export const FetchabilityTips: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 22,
+            fontSize: 30,
             fontWeight: 300,
             color: "#ffffff66",
           }}
@@ -113,7 +109,7 @@ export const FetchabilityTips: React.FC = () => {
           width: "100%",
         }}
       >
-        {TIPS.map(({ number, title, detail, delay }) => {
+        {TIPS.map(({ number, title, delay }) => {
           const progress = spring({
             frame: frame - delay,
             fps,
@@ -125,13 +121,6 @@ export const FetchabilityTips: React.FC = () => {
             extrapolateRight: "clamp",
           });
           const x = interpolate(progress, [0, 1], [-60, 0]);
-
-          const detailOpacity = interpolate(
-            frame,
-            [delay + 25, delay + 50],
-            [0, 1],
-            { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
-          );
 
           return (
             <div
@@ -162,9 +151,6 @@ export const FetchabilityTips: React.FC = () => {
 
               <div
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 8,
                   borderLeft: `3px solid ${COLORS.orange}`,
                   paddingLeft: 28,
                 }}
@@ -179,17 +165,6 @@ export const FetchabilityTips: React.FC = () => {
                 >
                   {title}
                 </div>
-                <div
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 300,
-                    color: "#ffffff77",
-                    lineHeight: 1.5,
-                    opacity: detailOpacity,
-                  }}
-                >
-                  {detail}
-                </div>
               </div>
             </div>
           );
@@ -199,7 +174,7 @@ export const FetchabilityTips: React.FC = () => {
       {/* Bottom */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 30,
           fontWeight: 400,
           color: COLORS.cyan,
           opacity: bottomOpacity,

@@ -109,7 +109,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
           background: `${platformColor}22`,
           border: `1px solid ${platformColor}`,
           borderRadius: 6,
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 700,
           color: platformColor,
           textAlign: "center",
@@ -122,7 +122,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
       <div
         style={{
           width: 280,
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 300,
           color: "#ffffff88",
           flexShrink: 0,
@@ -177,7 +177,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 900,
           color: gradeColor,
           flexShrink: 0,
@@ -189,7 +189,7 @@ const MetricRow: React.FC<MetricRowProps> = ({
       <div
         style={{
           width: 180,
-          fontSize: 15,
+          fontSize: 20,
           fontWeight: 400,
           color: COLORS.orange,
           flexShrink: 0,
@@ -239,7 +239,7 @@ export const PGTAudit: React.FC = () => {
       >
         <div
           style={{
-            fontSize: 22,
+            fontSize: 44,
             fontWeight: 400,
             color: "#ef4444",
             letterSpacing: "0.2em",
@@ -259,7 +259,7 @@ export const PGTAudit: React.FC = () => {
         </div>
         <div
           style={{
-            fontSize: 18,
+            fontSize: 22,
             fontWeight: 300,
             color: "#ffffff44",
             marginLeft: "auto",
@@ -287,7 +287,7 @@ export const PGTAudit: React.FC = () => {
       {/* Bottom */}
       <div
         style={{
-          fontSize: 24,
+          fontSize: 28,
           fontWeight: 400,
           color: COLORS.orange,
           opacity: bottomOpacity,
@@ -298,9 +298,7 @@ export const PGTAudit: React.FC = () => {
       >
         Significant visibility gap vs. category leaders.
         <br />
-        <span
-          style={{ fontWeight: 700, color: "#ffffff", fontSize: 26 }}
-        >
+        <span style={{ fontWeight: 700, color: "#ffffff", fontSize: 30 }}>
           This is the GEO opportunity.
         </span>
       </div>

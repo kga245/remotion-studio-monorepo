@@ -1,11 +1,4 @@
-import {
-  AbsoluteFill,
-  Easing,
-  interpolate,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import { COLORS, fontFamily } from "../theme";
 
 // 8 seconds = 240 frames
@@ -13,7 +6,6 @@ import { COLORS, fontFamily } from "../theme";
 
 export const TrainingVsAgentic: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
   // Title fades in
   const titleOpacity = interpolate(frame, [0, 25], [0, 1], {
@@ -54,14 +46,8 @@ export const TrainingVsAgentic: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Highlight agentic as dominant
-  const agenticGlow = interpolate(frame, [120, 180], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Bottom insight
-  const insightOpacity = interpolate(frame, [165, 195], [0, 1], {
+  // Bottom label
+  const insightOpacity = interpolate(frame, [145, 175], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -83,7 +69,7 @@ export const TrainingVsAgentic: React.FC = () => {
       {/* Title */}
       <div
         style={{
-          fontSize: 28,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -114,32 +100,31 @@ export const TrainingVsAgentic: React.FC = () => {
             transform: `translateX(${leftX}px)`,
             opacity: leftOpacity,
             padding: "40px 48px",
-            border: `1px solid ${COLORS.graphite}44`,
+            border: `1px solid ${COLORS.graphite}88`,
             borderRight: "none",
             borderRadius: "8px 0 0 8px",
             background: "#0e0e18",
             display: "flex",
             flexDirection: "column",
             gap: 20,
-            filter: "grayscale(0.4)",
           }}
         >
           <div
             style={{
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: 400,
-              color: "#ffffff44",
+              color: "rgba(255,255,255,0.35)",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
             }}
           >
-            Pathway A
+            Mechanism A
           </div>
           <div
             style={{
               fontSize: 48,
               fontWeight: 900,
-              color: "#ffffff66",
+              color: COLORS.white,
               letterSpacing: "-0.02em",
               lineHeight: 1.1,
             }}
@@ -165,23 +150,32 @@ export const TrainingVsAgentic: React.FC = () => {
             }}
           >
             {[
-              "Static snapshot of the web",
-              "Knowledge cutoff date",
-              "Baked in at model training",
-              "Hard to influence post-launch",
+              "Knowledge embedded during model training",
+              "Reflects content as it existed at training time",
+              "Present in every LLM response by default",
+              "Updated only when the model is retrained",
             ].map((item, i) => (
               <div
                 key={i}
                 style={{
-                  fontSize: 20,
+                  fontSize: 26,
                   fontWeight: 300,
-                  color: "#ffffff44",
+                  color: "rgba(255,255,255,0.60)",
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "flex-start",
                   gap: 12,
                 }}
               >
-                <span style={{ color: COLORS.graphite, fontSize: 16 }}>✗</span>
+                <span
+                  style={{
+                    color: COLORS.graphite,
+                    fontSize: 18,
+                    marginTop: 4,
+                    flexShrink: 0,
+                  }}
+                >
+                  —
+                </span>
                 {item}
               </div>
             ))}
@@ -220,43 +214,38 @@ export const TrainingVsAgentic: React.FC = () => {
             transform: `translateX(${rightX}px)`,
             opacity: rightOpacity,
             padding: "40px 48px",
-            border: `2px solid ${COLORS.cyan}${Math.round(agenticGlow * 200)
-              .toString(16)
-              .padStart(2, "0")}`,
+            border: `1px solid ${COLORS.cyan}66`,
             borderLeft: "none",
             borderRadius: "0 8px 8px 0",
-            background: `${COLORS.cyan}${Math.round(agenticGlow * 15)
-              .toString(16)
-              .padStart(2, "0")}`,
+            background: `${COLORS.cyan}08`,
             display: "flex",
             flexDirection: "column",
             gap: 20,
-            boxShadow: `inset 0 0 ${agenticGlow * 40}px ${COLORS.cyan}22`,
           }}
         >
           <div
             style={{
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: 400,
               color: COLORS.cyan,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
             }}
           >
-            Pathway B — Active
+            Mechanism B
           </div>
           <div
             style={{
               fontSize: 48,
               fontWeight: 900,
-              color: "#ffffff",
+              color: COLORS.white,
               letterSpacing: "-0.02em",
               lineHeight: 1.1,
             }}
           >
             Agentic
             <br />
-            Search
+            Retrieval
           </div>
           <div
             style={{
@@ -275,23 +264,32 @@ export const TrainingVsAgentic: React.FC = () => {
             }}
           >
             {[
-              "Live web crawling at query time",
-              "Real-time retrieval",
-              "Ranks by authority + extractability",
-              "Optimizable right now",
+              "Content fetched live at the moment of the query",
+              "Draws from current sources on the web",
+              "Active in search-augmented models",
+              "What the model retrieves, not what it knows",
             ].map((item, i) => (
               <div
                 key={i}
                 style={{
-                  fontSize: 20,
+                  fontSize: 26,
                   fontWeight: 300,
-                  color: "#ffffffcc",
+                  color: "rgba(255,255,255,0.60)",
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "flex-start",
                   gap: 12,
                 }}
               >
-                <span style={{ color: COLORS.cyan, fontSize: 16 }}>✓</span>
+                <span
+                  style={{
+                    color: COLORS.cyan,
+                    fontSize: 18,
+                    marginTop: 4,
+                    flexShrink: 0,
+                  }}
+                >
+                  —
+                </span>
                 {item}
               </div>
             ))}
@@ -303,7 +301,7 @@ export const TrainingVsAgentic: React.FC = () => {
       <div
         style={{
           marginTop: 40,
-          fontSize: 26,
+          fontSize: 32,
           fontWeight: 400,
           color: COLORS.cyan,
           textAlign: "center",
@@ -311,7 +309,7 @@ export const TrainingVsAgentic: React.FC = () => {
           letterSpacing: "0.02em",
         }}
       >
-        GEO targets Agentic Search — the path you can actually influence.
+        Two distinct mechanisms — both active in modern AI responses.
       </div>
     </AbsoluteFill>
   );

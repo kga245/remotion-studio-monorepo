@@ -95,7 +95,7 @@ export const CTRDrop59: React.FC = () => {
         style={{
           position: "absolute",
           top: 60,
-          fontSize: 24,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.graphite,
           letterSpacing: "0.2em",
@@ -127,7 +127,7 @@ export const CTRDrop59: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 18,
+              fontSize: 26,
               fontWeight: 400,
               color: "#ffffff66",
               letterSpacing: "0.15em",
@@ -176,7 +176,7 @@ export const CTRDrop59: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 18,
+              fontSize: 26,
               fontWeight: 400,
               color: COLORS.orange,
               letterSpacing: "0.15em",
@@ -243,7 +243,7 @@ export const CTRDrop59: React.FC = () => {
           position: "absolute",
           bottom: 80,
           opacity: contextOpacity,
-          fontSize: 28,
+          fontSize: 32,
           fontWeight: 300,
           color: "#ffffff88",
           letterSpacing: "0.04em",

@@ -87,7 +87,11 @@ export const DarkFunnel: React.FC = () => {
     easing: Easing.out(Easing.quad),
   });
 
-  const stepStyle = (scale: number, color: string, dim?: boolean): React.CSSProperties => ({
+  const stepStyle = (
+    scale: number,
+    color: string,
+    dim?: boolean,
+  ): React.CSSProperties => ({
     padding: "32px 36px",
     background: dim ? `${COLORS.graphite}22` : `${color}22`,
     border: `2px solid ${dim ? COLORS.graphite : color}`,
@@ -118,7 +122,7 @@ export const DarkFunnel: React.FC = () => {
       {/* Header */}
       <div
         style={{
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -145,7 +149,7 @@ export const DarkFunnel: React.FC = () => {
         <div style={stepStyle(step1Scale, COLORS.cyan)}>
           <div
             style={{
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: 400,
               color: COLORS.cyan,
               letterSpacing: "0.15em",
@@ -157,7 +161,7 @@ export const DarkFunnel: React.FC = () => {
           <div style={{ fontSize: 32 }}>💬</div>
           <div
             style={{
-              fontSize: 20,
+              fontSize: 26,
               fontWeight: 700,
               color: "#ffffff",
             }}
@@ -166,7 +170,7 @@ export const DarkFunnel: React.FC = () => {
           </div>
           <div
             style={{
-              fontSize: 15,
+              fontSize: 20,
               fontWeight: 300,
               color: "#ffffff88",
               lineHeight: 1.4,
@@ -193,7 +197,7 @@ export const DarkFunnel: React.FC = () => {
         <div style={stepStyle(step2Scale, COLORS.orange)}>
           <div
             style={{
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: 400,
               color: COLORS.orange,
               letterSpacing: "0.15em",
@@ -205,7 +209,7 @@ export const DarkFunnel: React.FC = () => {
           <div style={{ fontSize: 32 }}>🤖</div>
           <div
             style={{
-              fontSize: 20,
+              fontSize: 26,
               fontWeight: 700,
               color: "#ffffff",
             }}
@@ -214,7 +218,7 @@ export const DarkFunnel: React.FC = () => {
           </div>
           <div
             style={{
-              fontSize: 15,
+              fontSize: 20,
               fontWeight: 300,
               color: "#ffffff88",
               lineHeight: 1.4,
@@ -240,7 +244,7 @@ export const DarkFunnel: React.FC = () => {
         >
           <div
             style={{
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: 700,
               color: "#ef4444",
               opacity: breakOpacity,
@@ -265,7 +269,7 @@ export const DarkFunnel: React.FC = () => {
         <div style={stepStyle(step3Scale, "#ffffff", true)}>
           <div
             style={{
-              fontSize: 13,
+              fontSize: 20,
               fontWeight: 400,
               color: "#ffffff44",
               letterSpacing: "0.15em",
@@ -277,7 +281,7 @@ export const DarkFunnel: React.FC = () => {
           <div style={{ fontSize: 32 }}>🔍</div>
           <div
             style={{
-              fontSize: 20,
+              fontSize: 26,
               fontWeight: 700,
               color: "#ffffff88",
             }}
@@ -286,7 +290,7 @@ export const DarkFunnel: React.FC = () => {
           </div>
           <div
             style={{
-              fontSize: 15,
+              fontSize: 20,
               fontWeight: 300,
               color: "#ffffff55",
               lineHeight: 1.4,
@@ -299,7 +303,7 @@ export const DarkFunnel: React.FC = () => {
           {crossOpacity > 0 && (
             <div
               style={{
-                fontSize: 14,
+                fontSize: 20,
                 fontWeight: 700,
                 color: "#ef4444",
                 opacity: crossOpacity,
@@ -318,7 +322,7 @@ export const DarkFunnel: React.FC = () => {
         style={{
           opacity: insightOpacity,
           transform: `translateY(${insightY}px)`,
-          fontSize: 26,
+          fontSize: 30,
           fontWeight: 400,
           color: "#ffffffaa",
           textAlign: "center",
@@ -332,9 +336,7 @@ export const DarkFunnel: React.FC = () => {
           Analytics will never show it.
         </span>
         <br />
-        <span
-          style={{ fontSize: 22, fontWeight: 300, color: "#ffffff66" }}
-        >
+        <span style={{ fontSize: 26, fontWeight: 300, color: "#ffffff66" }}>
           Brand mention frequency is now a leading indicator, not trailing.
         </span>
       </div>

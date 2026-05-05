@@ -152,7 +152,7 @@ const PairingRow: React.FC<PairingRowProps> = ({
           background: `${contentColor}22`,
           border: `2px solid ${contentColor}66`,
           borderRadius: 8,
-          fontSize: 22,
+          fontSize: 26,
           fontWeight: 700,
           color: "#ffffffcc",
           textAlign: "center",
@@ -171,7 +171,7 @@ const PairingRow: React.FC<PairingRowProps> = ({
         style={{
           width: 340,
           paddingLeft: 24,
-          fontSize: 17,
+          fontSize: 22,
           fontWeight: 300,
           color: "#ffffff55",
           lineHeight: 1.4,
@@ -218,7 +218,7 @@ export const ContentPerLLM: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -252,13 +252,14 @@ export const ContentPerLLM: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          fontSize: 24,
+          fontSize: 30,
           fontWeight: 300,
           color: "#ffffffaa",
           opacity: bottomOpacity,
         }}
       >
-        Different models. Different diets. Match your content to the model you're targeting.
+        Different models. Different diets. Match your content to the model
+        you're targeting.
       </div>
     </AbsoluteFill>
   );

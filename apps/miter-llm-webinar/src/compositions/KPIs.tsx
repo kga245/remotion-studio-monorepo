@@ -1,6 +1,5 @@
 import {
   AbsoluteFill,
-  Easing,
   interpolate,
   spring,
   useCurrentFrame,
@@ -86,7 +85,7 @@ export const KPIs: React.FC = () => {
       {/* KPI number */}
       <div
         style={{
-          fontSize: 16,
+          fontSize: 22,
           fontWeight: 400,
           color,
           letterSpacing: "0.2em",
@@ -112,7 +111,7 @@ export const KPIs: React.FC = () => {
       {/* Subtitle / metric name */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 26,
           fontWeight: 400,
           color,
           letterSpacing: "0.04em",
@@ -135,7 +134,7 @@ export const KPIs: React.FC = () => {
       {/* Definition */}
       <div
         style={{
-          fontSize: 20,
+          fontSize: 26,
           fontWeight: 300,
           color: "#ffffffaa",
           lineHeight: 1.5,
@@ -148,7 +147,7 @@ export const KPIs: React.FC = () => {
       {/* Question prompt */}
       <div
         style={{
-          fontSize: 18,
+          fontSize: 22,
           fontWeight: 400,
           color,
           fontStyle: "italic",
@@ -180,7 +179,7 @@ export const KPIs: React.FC = () => {
       {/* Header */}
       <div
         style={{
-          fontSize: 26,
+          fontSize: 44,
           fontWeight: 400,
           color: COLORS.orange,
           letterSpacing: "0.2em",
@@ -239,14 +238,15 @@ export const KPIs: React.FC = () => {
       {/* Bottom note */}
       <div
         style={{
-          fontSize: 22,
+          fontSize: 30,
           fontWeight: 300,
           color: "#ffffff88",
           opacity: bottomOpacity,
           textAlign: "center",
         }}
       >
-        These exist outside of traditional analytics. You have to measure them directly.
+        These exist outside of traditional analytics. You have to measure them
+        directly.
       </div>
     </AbsoluteFill>
   );
