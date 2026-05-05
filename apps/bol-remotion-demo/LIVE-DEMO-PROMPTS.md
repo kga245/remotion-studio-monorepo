@@ -1,6 +1,63 @@
 # Live Demo Prompts — BOL Remotion Show & Tell
 
-Use these prompts during the live demo to show how Claude creates motion graphics from plain English. Each one targets a different capability. Ordered for maximum impact.
+> **🟢 START-OF-SESSION PICKUP** — read this whole banner first, then continue to the prompts below.
+
+## State at handoff (last commit: `8cd728e`)
+
+The bol-remotion-demo app is **built and ready for demo prep**:
+
+- **34 scenes** in the audition pool, organized by capability folder in the studio sidebar (matches PRESENTATION.md sections A → L plus J-Parametric).
+- **Master `Showcase` composition** is the legacy 7-vignette cut from the original session — pre-folder-grouping, pre-recoloring. **Almost certainly needs a new cut from your favorites.**
+- **All Lottie scenes** auto-recolor to the BOL palette via `recolorLottieToBrand()` — see [src/lib/recolorLottie.ts](src/lib/recolorLottie.ts).
+- **Brand tokens** in [src/styles/theme.ts](src/styles/theme.ts) — change once, every scene re-skins.
+- **Tree is clean, in sync with origin.** Push history landed today's work in 11 commits.
+
+## Where to read first (in order)
+
+1. **[../../CLAUDE.md](../../CLAUDE.md)** — repo-level conventions (commitlint scope traps, two-studios distinction, footguns). Read this first if the new session is a fresh Claude.
+2. **[PRESENTATION.md](PRESENTATION.md)** — show-and-tell deck, 8 sections + studio screenshot + project anatomy + 26-page scene tour. This is the canonical demo narrative.
+3. **[PROGRESS.md](PROGRESS.md)** — full scene inventory with verification status, plus "successor agent should resume" instructions.
+4. **[IDEAS.md](IDEAS.md)** — original scene ideation (mostly complete now).
+5. This file — Claude prompts for the live "watch Claude build a scene from plain English" segment.
+
+## Pre-demo checklist (run these before the talk)
+
+```bash
+# 1. Studio still alive on port 3001?
+lsof -ti tcp:3001 || (cd apps/bol-remotion-demo && npx remotion studio --port 3001 &)
+
+# 2. Open the studio and click through every folder to confirm nothing's broken
+open http://localhost:3001
+
+# 3. Verify a fresh render works end-to-end
+cd apps/bol-remotion-demo
+npx remotion still src/index.ts Title out/preflight.png --frame 60
+
+# 4. If presenting from a fresh git clone, also: pnpm install && cd apps/bol-remotion-demo && npx remotion studio --port 3001
+```
+
+## Demo-prep tasks that should happen before showtime
+
+In rough priority order — **the new session should ask which of these to tackle first**:
+
+1. **Pick the final showreel scenes.** Open the studio, scrub each of the 34 scenes, and pick 7–9 to feature. Move the rest to the `Archive` folder in [src/scenes/index.ts](src/scenes/index.ts).
+2. **Rebuild `Showcase.tsx`** with the picks, using `<TransitionSeries>` to chain them with subtle fades. The current Showcase is the original 7 from session 1 and doesn't reflect the latest brand-recoloring work.
+3. **Tune the audio caption timing** in [src/scenes/AudioCaptions.tsx](src/scenes/AudioCaptions.tsx) — captions are hand-timed and may drift against the actual VO. Scrub frame-by-frame and adjust the `from`/`to` numbers in the `CAPTIONS` array.
+4. **Optionally regenerate the VO line** for AudioCaptions if the current line ("Every frame, on brand. Every animation, generated from code.") doesn't fit the show. Use the ElevenLabs MCP if available; output to `public/audio/voiceover.mp3`.
+5. **Optionally swap the Lottie source files** in `public/lottie/` for BOL-authored brand assets. Each `Lottie*` scene loads its file by name — drop a replacement and it auto-recolors.
+6. **Rehearse the studio tour** using PRESENTATION.md section 3 as a script.
+
+## Suggested opening prompt for the new session
+
+> "I'm prepping to demo Remotion to BOL staff. Read [apps/bol-remotion-demo/LIVE-DEMO-PROMPTS.md](apps/bol-remotion-demo/LIVE-DEMO-PROMPTS.md) and the files it links to (CLAUDE.md, PRESENTATION.md, PROGRESS.md). Then run the pre-demo checklist and tell me what you find. After that, walk me through the 6 demo-prep tasks in priority order — I'll tell you which to tackle first."
+
+That gets you a clean orientation + pre-flight + decision point in one prompt.
+
+---
+
+# Live demo prompts (ordered for maximum impact)
+
+Use these prompts during the live demo to show how Claude creates motion graphics from plain English. Each one targets a different capability.
 
 ## 1. Motion Typography (warm-up)
 
