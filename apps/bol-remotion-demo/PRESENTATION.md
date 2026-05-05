@@ -94,7 +94,7 @@ This isn't one Remotion project — it's a **monorepo of seven** sharing a brand
 
 ---
 
-## 4. The audition pool (26 scenes)
+## 4. The audition pool (34 scenes)
 
 Each scene is its own composition. In studio, click the name in the left rail to scrub.
 

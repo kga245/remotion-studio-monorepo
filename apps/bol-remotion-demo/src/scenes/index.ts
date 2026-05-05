@@ -37,6 +37,14 @@ import { ThreeOrbitField } from "./ThreeOrbitField";
 import { TransitionGallery } from "./TransitionGallery";
 import { LottieScene } from "./LottieScene";
 import { LottieRecolored } from "./LottieRecolored";
+import { LottieConfetti } from "./LottieConfetti";
+import { LottieRain } from "./LottieRain";
+import { LottieFileRecover } from "./LottieFileRecover";
+import { LottieGraph } from "./LottieGraph";
+import { LottieRunDog } from "./LottieRunDog";
+import { LottieFan } from "./LottieFan";
+import { LottieLayer } from "./LottieLayer";
+import { LottieWFH } from "./LottieWFH";
 import { Outro } from "./Outro";
 
 export type SceneEntry = {
@@ -163,6 +171,22 @@ export const sceneFolders: SceneFolder[] = [
         component: LottieRecolored,
         durationInFrames: 180,
       },
+      {
+        id: "LottieConfetti",
+        component: LottieConfetti,
+        durationInFrames: 180,
+      },
+      { id: "LottieRain", component: LottieRain, durationInFrames: 180 },
+      {
+        id: "LottieFileRecover",
+        component: LottieFileRecover,
+        durationInFrames: 180,
+      },
+      { id: "LottieGraph", component: LottieGraph, durationInFrames: 240 },
+      { id: "LottieRunDog", component: LottieRunDog, durationInFrames: 180 },
+      { id: "LottieFan", component: LottieFan, durationInFrames: 240 },
+      { id: "LottieLayer", component: LottieLayer, durationInFrames: 180 },
+      { id: "LottieWFH", component: LottieWFH, durationInFrames: 180 },
     ],
   },
   {
