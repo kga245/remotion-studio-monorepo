@@ -94,7 +94,7 @@ This isn't one Remotion project — it's a **monorepo of seven** sharing a brand
 
 ---
 
-## 4. The audition pool (23 scenes)
+## 4. The audition pool (26 scenes)
 
 Each scene is its own composition. In studio, click the name in the left rail to scrub.
 
@@ -254,6 +254,22 @@ A BOL-orange torus knot rotating in 3D, lit with two directional lights (warm ke
 
 > **Talking point:** "Anything we'd do in Cinema 4D for a hero shot can live here too — same React mental model."
 
+#### `ThreeStack` &nbsp; _Duration: 6s_
+
+Three rotating cubes stacked on a graphite background — cyan top, orange middle, graphite bottom. Each cube's `meshStandardMaterial` reads its color directly from `theme.ts`, demonstrating that **brand colors travel into 3D the same way they travel into 2D** — one source of truth, every render.
+
+![ThreeStack](docs/stills/three-stack.png)
+
+> **Talking point:** "Same brand kit. The orange in this cube is the orange in the title card from scene 1. Change it once, every shot updates."
+
+#### `ThreeOrbitField` &nbsp; _Duration: 8s_
+
+A graphite core sphere with twelve smaller spheres orbiting around it in a ring. Satellites alternate orange / cyan / light gray, indexed by position. The ring tilts slightly so the 3D structure reads.
+
+![ThreeOrbitField](docs/stills/three-orbit.png)
+
+> **Talking point:** "Multi-mesh scenes are the same loop you'd write in 2D — `Array.from({length: 12}).map(i => <mesh ... />)`. Three.js is just the React component on the inside."
+
 ---
 
 ### I. Transitions — _between vignettes_
@@ -287,6 +303,16 @@ A title card backed by a Zod schema. The right-side **Props panel** in the studi
 A Lottie animation loaded from `public/lottie/animation.json` plays inside a BOL-themed dashed frame. **Drop in any brand-authored Lottie JSON** and it just works.
 
 > **Talking point:** "When designers in After Effects export a Lottie, this is where it lands — designer-authored animation, in our codebase."
+
+#### `LottieRecolored` &nbsp; _Duration: 6s_
+
+The same Lottie, side-by-side. Left pane: original palette as shipped from LottieFiles. Right pane: same JSON re-skinned to the BOL palette via a runtime `recolorLottieToBrand()` mutation. The mutation maps each source color onto a brand-color band by **luminance** — darkest source colors land on Graphite, lightest on Light Gray, mids on Orange and Cyan. **No editing the source Lottie required.**
+
+![LottieRecolored](docs/stills/lottie-recolored.png)
+
+> **Talking point:** "Designers ship us a Lottie in their preferred colors. Three lines of code re-skin it to BOL. Their original file isn't touched — we just read it through a brand filter at render time."
+
+The utility lives at [`src/lib/recolorLottie.ts`](src/lib/recolorLottie.ts) and works on any Lottie animation. It also exposes `recolorLottieExplicit()` for cases where you want exact source-to-target color mapping rather than luminance bands.
 
 ---
 

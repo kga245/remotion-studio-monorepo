@@ -32,8 +32,11 @@ import { PieChart } from "./PieChart";
 import { LineChartMarker } from "./LineChartMarker";
 import { AudioCaptions } from "./AudioCaptions";
 import { ThreeScene } from "./ThreeScene";
+import { ThreeStack } from "./ThreeStack";
+import { ThreeOrbitField } from "./ThreeOrbitField";
 import { TransitionGallery } from "./TransitionGallery";
 import { LottieScene } from "./LottieScene";
+import { LottieRecolored } from "./LottieRecolored";
 import { Outro } from "./Outro";
 
 export type SceneEntry = {
@@ -132,6 +135,12 @@ export const sceneFolders: SceneFolder[] = [
     folder: "H-3D",
     scenes: [
       { id: "ThreeScene", component: ThreeScene, durationInFrames: 180 },
+      { id: "ThreeStack", component: ThreeStack, durationInFrames: 180 },
+      {
+        id: "ThreeOrbitField",
+        component: ThreeOrbitField,
+        durationInFrames: 240,
+      },
     ],
   },
   {
@@ -149,6 +158,11 @@ export const sceneFolders: SceneFolder[] = [
     folder: "K-External",
     scenes: [
       { id: "LottieScene", component: LottieScene, durationInFrames: 180 },
+      {
+        id: "LottieRecolored",
+        component: LottieRecolored,
+        durationInFrames: 180,
+      },
     ],
   },
   {
